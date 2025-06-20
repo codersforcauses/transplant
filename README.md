@@ -1,10 +1,10 @@
 # Django + Next.js Template
 
-A full-stack web application template using Django (Python) for the backend API and Next.js 16 (React) for the frontend.
+Django + Nextjs Template: Standardised CFC Tech Stack
 
 ---
 
-## 🚀 Quick Start (Dev Container) - Recommended
+## Quick Start (Dev Container) - Recommended
 
 The easiest way to get started is using the VS Code Dev Container:
 
@@ -33,8 +33,7 @@ The easiest way to get started is using the VS Code Dev Container:
    - Admin panel: [http://localhost:8000/admin](http://localhost:8000/admin)
 
 ---
-
-## 📋 Local Development Setup
+## Local Development Setup
 
 **Note**: Only follow these steps if you're NOT using the dev container.
 
@@ -43,7 +42,7 @@ The easiest way to get started is using the VS Code Dev Container:
 - **Node.js 18+** and **npm** - [Download here](https://nodejs.org/)
 - **Python 3.12+** - [Download here](https://python.org/)
 - **Poetry** (Python package manager) - [Installation guide](https://python-poetry.org/docs/#installation)
-- **PostgreSQL 16+** - [Download here](https://www.postgresql.org/download/)
+- **Docker Desktop** - [Download here](https://www.docker.com/products/docker-desktop/)
 
 ### Installation Steps
 
@@ -64,40 +63,18 @@ curl -sSL https://install.python-poetry.org | python3 -
 pip install poetry
 ```
 
-**PostgreSQL**
+#### 3. Start the Database
 
-- **macOS (with Homebrew):**
-  ```bash
-  brew install postgresql@16
-  export PATH="/opt/homebrew/opt/postgresql@16/bin:$PATH" # Add to ~/.zshrc or ~/.bash_profile
-  brew services start postgresql@16
-  ```
-
-- **Windows:**
-  1. Download and run the [PostgreSQL installer](https://www.postgresql.org/download/windows/).
-  2. Follow the setup instructions and remember your username/password.
-  3. Add PostgreSQL's `bin` directory to your PATH if needed.
-
-- **Linux (Debian/Ubuntu):**
-  ```bash
-  sudo apt update
-  sudo apt install postgresql postgresql-contrib
-  sudo service postgresql start
-  ```
-
-#### 3. Set Up the Database
-
-- **macOS/Linux:**
-  ```bash
-  createdb your_db_name
-  ```
-- **Windows:**
-  - Open "SQL Shell (psql)" from the Start menu and run:
-    ```
-    CREATE DATABASE your_db_name;
-    ```
+```bash
+cd server && docker compose up -d
+```
 
 #### 4. Set Up Environment Variables
+
+Before proceeding, create your environment files by copying the examples:
+```bash
+cp ./client/.env.example ./client/.env && cp ./server/.env.example ./server/.env
+```
 
 **Backend (`.env` in `server/`)**
 ```env
@@ -121,16 +98,17 @@ FRONTEND_URL=http://localhost:3000
 
 **Frontend (`.env` in `client/`)**
 ```env
-NEXT_PUBLIC_API_URL=http://localhost:8000
+NEXT_PUBLIC_BACKEND_URL=http://localhost:8000
 ```
 
 #### 5. Set Up the Backend (Django)
 ```bash
 cd server
 poetry install
-poetry run python manage.py migrate
-poetry run python manage.py createsuperuser  # optional
-poetry run python manage.py runserver
+poetry shell
+python manage.py migrate
+python manage.py createsuperuser  # optional
+python manage.py runserver
 ```
 
 #### 6. Set Up the Frontend (Next.js)
@@ -147,53 +125,29 @@ npm run dev
 
 ---
 
-## 📁 Project Structure
-
-```
-project-name/
-├── client/                 # Next.js frontend
-│   ├── src/
-│   │   ├── components/     # React components
-│   │   ├── hooks/          # Custom React hooks
-│   │   ├── lib/            # Utility functions
-│   │   ├── pages/          # Next.js pages (Pages Router)
-│   │   └── styles/         # CSS and styling
-│   ├── public/             # Static assets
-│   └── package.json        # Node.js dependencies
-├── server/                 # Django backend
-│   ├── api/                # Django apps
-│   ├── manage.py           # Django management script
-│   ├── .env                # Environment variables
-│   └── pyproject.toml      # Python dependencies
-├── docker/                 # Docker configuration
-└── docker-compose.yml      # Database service
-```
-
----
-
-## 🛠️ Development Commands
+## Development Commands
 
 ### Backend (Django)
 ```bash
 cd server
 
 # Run development server
-poetry run python manage.py runserver
+python manage.py runserver
 
 # Create migrations
-poetry run python manage.py makemigrations
+python manage.py makemigrations
 
 # Apply migrations
-poetry run python manage.py migrate
+python manage.py migrate
 
 # Create superuser
-poetry run python manage.py createsuperuser
+python manage.py createsuperuser
 
 # Run tests
-poetry run python manage.py test
+python manage.py test
 
 # Reset database (nuclear option)
-poetry run ./nuke.sh
+./nuke.sh
 ```
 
 ### Frontend (Next.js)
@@ -224,3 +178,31 @@ npm run format
 
 ---
 
+## Server
+
+### Create and run migrations
+
+If the models are updated, be sure to create a migration:
+
+```bash
+python manage.py makemigrations # create migration
+python manage.py migrate # apply migrations
+```
+
+### Nuke the DB
+
+If you run into migration conflicts that you can't be bothered to fix, run `nuke.sh` to clear your database. Then, run migrations again.
+
+## Other
+
+### Update Dependencies
+
+You can run `npm install` and `poetry install` in the respective `client` and `server` folders to install the newest dependencies.
+
+### Editing Docker stuff
+
+If you modify anything in the `docker` folder, you need to add the `--build` flag or Docker won't give you the latest changes.
+
+### Changing env vars
+
+Edit the `.env` file in the respective directory (client or server).
