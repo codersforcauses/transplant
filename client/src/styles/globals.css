@@ -4,6 +4,26 @@
 
 @layer base {
   :root {
+    --text: #333333;
+    --background: #ffffff;
+    --primary: #f67423;
+    --secondary: #ffeed1;
+    --accent: #ab0169;
+  }
+  .dark {
+    --text: #cccccc;
+    --background: #000000;
+    --primary: #dc5a09;
+    --secondary: #2e1d00;
+    --accent: #fe52bc;
+  }
+}
+
+,
+
+
+/* @layer base {
+  :root {
     --background: 0 0% 100%;
     --foreground: 222.2 84% 4.9%;
 
@@ -64,7 +84,7 @@
     --input: 217.2 32.6% 17.5%;
     --ring: 212.7 26.8% 83.9%;
   }
-}
+} */
 
 @layer base {
   body {
