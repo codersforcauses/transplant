@@ -6,17 +6,17 @@
   :root {
     --text: #333333;
     --background: #ffffff;
-    --primary: #f67423;
+    --primary: #ab0169;
     --secondary: #ffeed1;
-    --accent: #ab0169;
+    --accent: #f67423;
     --footer: #f4f4f4;
   }
   .dark {
     --text: #cccccc;
     --background: #000000;
-    --primary: #dc5a09;
+    --primary: #fe52bc;
     --secondary: #2e1d00;
-    --accent: #fe52bc;
+    --accent: #dc5a09;
     --footer: #0a0a0a;
   }
 }
