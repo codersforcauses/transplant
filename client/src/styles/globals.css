@@ -9,6 +9,7 @@
     --primary: #f67423;
     --secondary: #ffeed1;
     --accent: #ab0169;
+    --footer: #f4f4f4;
   }
   .dark {
     --text: #cccccc;
@@ -16,11 +17,9 @@
     --primary: #dc5a09;
     --secondary: #2e1d00;
     --accent: #fe52bc;
+    --footer: #0a0a0a;
   }
 }
-
-,
-
 
 /* @layer base {
   :root {
