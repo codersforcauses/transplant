@@ -116,7 +116,9 @@ NEXT_PUBLIC_BACKEND_URL=http://localhost:8000
 ```bash
 cd server
 poetry install
-poetry shell
+poetry --version
+poetry shell # if poetry --version returned v1
+poetry env activate | sh # if poetry --version returned v2
 python manage.py migrate
 python manage.py createsuperuser  # optional
 python manage.py runserver
