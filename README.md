@@ -118,7 +118,7 @@ cd server
 poetry install
 poetry --version
 poetry shell # if poetry --version returned v1
-poetry env activate | sh # if poetry --version returned v2
+eval $(poetry env activate) # if poetry --version returned v2
 python manage.py migrate
 python manage.py createsuperuser  # optional
 python manage.py runserver
