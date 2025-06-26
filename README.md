@@ -143,8 +143,7 @@ NEXT_PUBLIC_BACKEND_URL=http://localhost:8000
 cd server
 poetry install
 poetry --version
-poetry shell # if poetry --version returned v1
-eval $(poetry env activate) # if poetry --version returned v2
+poetry --version | grep -qE 'version 1\.' && poetry shell || eval "$(poetry env activate)" #this line checks if you are using v1 then runs poetry shell, otherwise runs eval "$(poetry env activate)
 python manage.py migrate
 python manage.py createsuperuser  # optional
 python manage.py runserver
