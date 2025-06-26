@@ -13,7 +13,7 @@ The easiest way to get started is using the VS Code Dev Container:
    - [Docker Desktop](https://www.docker.com/products/docker-desktop/)
    - [VS Code](https://code.visualstudio.com/)
    - [Dev Containers extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers)
-   - npm (Node Package Manager) - run `npm install` in your terminal to install it.
+   - [Node Package Manager (npm)](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm#using-a-node-installer-to-install-nodejs-and-npm)
 
 2. **Open in Dev Container**:
 
@@ -69,6 +69,83 @@ curl -sSL https://install.python-poetry.org | python3 -
 # If that fails, use pip (all OSes)
 pip install poetry
 ```
+
+**npm (Node Package Manager)**
+
+##### Windows:
+Using Chocolatey (suggested):
+```powershell
+# Download and install Chocolatey:
+powershell -c "irm https://community.chocolatey.org/install.ps1|iex"
+
+# Download and install Node.js:
+choco install nodejs-lts --version="22"
+
+# Verify the Node.js version:
+node -v # Should print "v22.17.0".
+
+# Verify npm version:
+npm -v # Should print "10.9.2".
+```
+Using the installer: 
+Download the installer for npm [here](https://nodejs.org/dist/v22.17.0/node-v22.17.0-x64.msi).
+
+(You can get this manually by going to [https://nodejs.org/en/download/](https://nodejs.org/en/download/) and downloading the prebuilt installer, please don't try using the docker solution)
+
+##### MacOS:
+Using nvm (suggested): 
+```bash
+# Download and install nvm:
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
+
+# in lieu of restarting the shell
+\. "$HOME/.nvm/nvm.sh"
+
+# Download and install Node.js:
+nvm install 22
+
+# Verify the Node.js version:
+node -v # Should print "v22.17.0".
+nvm current # Should print "v22.17.0".
+
+# Verify npm version:
+npm -v # Should print "10.9.2".
+```
+
+Using brew:
+```bash
+# Download and install Homebrew
+curl -o- https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh | bash
+
+# Download and install Node.js:
+brew install node@22
+
+# Verify the Node.js version:
+node -v # Should print "v22.17.0".
+
+# Verify npm version:
+npm -v # Should print "10.9.2".
+```
+##### Linux
+Using nvm (suggested):
+```bash
+# Download and install nvm:
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
+
+# in lieu of restarting the shell
+\. "$HOME/.nvm/nvm.sh"
+
+# Download and install Node.js:
+nvm install 22
+
+# Verify the Node.js version:
+node -v # Should print "v22.17.0".
+nvm current # Should print "v22.17.0".
+
+# Verify npm version:
+npm -v # Should print "10.9.2".
+```
+Or just use your package manager (see [here](https://nodejs.org/en/download/package-manager/all)).
 
 #### 3. Start the Database
 
