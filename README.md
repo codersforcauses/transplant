@@ -72,7 +72,7 @@ curl -sSL https://install.python-poetry.org | python3 -
 ```
 
 <ins>Only</ins> If that fails, use pipx
-```
+```bash
 # install pipx if not already installed - any non-super old version will be fine
 
 # macOS
@@ -142,8 +142,10 @@ NEXT_PUBLIC_BACKEND_URL=http://localhost:8000
 ```bash
 cd server
 poetry install
-poetry --version
-poetry --version | grep -qE 'version 1\.' && poetry shell || eval "$(poetry env activate)" #this line checks if you are using v1 then runs poetry shell, otherwise runs eval "$(poetry env activate)
+
+# This line will run `poetry shell` if you are using poetry v1, and `eval "$(poetry env activate)"` otherwise.
+poetry --version | grep -qE 'version 1\.' && poetry shell || eval "$(poetry env activate)"
+
 python manage.py migrate
 python manage.py createsuperuser  # optional
 python manage.py runserver
