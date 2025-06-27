@@ -63,11 +63,37 @@ cd <project-name>
 **Poetry (Python package manager)**
 
 ```bash
-# Official installer (all OSes)
+# Official installer (*nix)
 curl -sSL https://install.python-poetry.org | python3 -
+```
+```powershell
+# Windows
+(Invoke-WebRequest -Uri https://install.python-poetry.org -UseBasicParsing).Content | py -
+```
 
-# If that fails, use pip (all OSes)
-pip install poetry
+<ins>Only</ins> If that fails, use pipx
+```bash
+# install pipx if not already installed - any non-super old version will be fine
+
+# macOS
+brew install pipx
+pipx ensurepath
+
+# Linux (requires a python3 installation - see above)
+python3 -m pip install --user pipx
+python3 -m pipx ensurepath
+
+# Windows
+# If scoop is not installed, first install it:
+Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+Invoke-RestMethod -Uri https://get.scoop.sh | Invoke-Expression
+# Then install pipx
+scoop install pipx
+pipx ensurepath
+```
+Once pipx is installed:
+```bash
+pipx install poetry
 ```
 
 **npm (Node Package Manager)**
@@ -193,7 +219,10 @@ NEXT_PUBLIC_BACKEND_URL=http://localhost:8000
 ```bash
 cd server
 poetry install
-poetry shell
+
+# This line will run `poetry shell` if you are using poetry v1, and `eval "$(poetry env activate)"` otherwise.
+poetry --version | grep -qE 'version 1\.' && poetry shell || eval "$(poetry env activate)"
+
 python manage.py migrate
 python manage.py createsuperuser  # optional
 python manage.py runserver
