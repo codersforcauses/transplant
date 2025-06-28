@@ -20,8 +20,8 @@ class UserManager(BaseUserManager):
         extra_fields.setdefault("role", "ADMIN")
 
         return self.create_user(email, password, **extra_fields)
-    
-    
+
+
 class User(AbstractBaseUser, PermissionsMixin):
     ROLE_CHOICES = (
         ("ADMIN", "Admin"),
