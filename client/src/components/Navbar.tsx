@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 
@@ -11,9 +12,16 @@ function Navbar() {
   return (
     <>
       <div>
-        <div className="flex h-[124px] w-full justify-between bg-gradient-to-r from-[#AB0169] to-[#F67321] pb-10 pl-20 pr-20 pt-10 text-center font-dm-sans text-base font-extrabold uppercase leading-6 tracking-wide text-white">
+        <div className="flex h-[124px] w-full justify-between bg-gradient-to-r from-[#F67321] to-[#AB0169] pb-10 pl-20 pr-20 pt-10 text-center font-dm-sans text-base font-extrabold uppercase leading-6 tracking-wide text-white">
           {/* logo */}
-          <div className="my-auto">logo</div>
+          <a href="https://transplant.org.au">
+            <Image
+              src="/TA-logo.png"
+              alt="Logo of Transplant Australia"
+              width={120}
+              height={70}
+            />
+          </a>
           {/* Desktop Menu */}
           <div className="hidden sm:block">
             <div className="flex h-[44px] w-[561px] gap-[48px]">
@@ -37,7 +45,7 @@ function Navbar() {
               </Link>
             </div>
           </div>
-          {/* <!-- Mobile menu button--> */}
+          {/* Mobile menu button */}
           <div className="sm:hidden">
             <button
               type="button"
@@ -92,34 +100,33 @@ function Navbar() {
       {isMobileMenuOpen && (
         <div className="sm:hidden" id="mobile-menu">
           <div className="border-t">
-            {/* <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" --> */}
             <Link
               href="#"
-              className="block h-[44px] bg-gradient-to-r from-[#AB0169] to-[#F67321] py-3 text-center font-dm-sans font-medium uppercase text-white"
+              className="block h-[44px] bg-gradient-to-r from-[#F67321] to-[#AB0169] py-3 text-center font-dm-sans font-medium uppercase text-white"
             >
               HOME
             </Link>
             <Link
               href="#"
-              className="block h-[44px] bg-gradient-to-r from-[#AB0169] to-[#F67321] py-3 text-center font-dm-sans font-medium uppercase text-white"
+              className="block h-[44px] bg-gradient-to-r from-[#F67321] to-[#AB0169] py-3 text-center font-dm-sans font-medium uppercase text-white"
             >
               ABOUT
             </Link>
             <Link
               href="#"
-              className="block h-[44px] bg-gradient-to-r from-[#AB0169] to-[#F67321] py-3 text-center font-dm-sans font-medium uppercase text-white"
+              className="block h-[44px] bg-gradient-to-r from-[#F67321] to-[#AB0169] py-3 text-center font-dm-sans font-medium uppercase text-white"
             >
               PARTICIPATE
             </Link>
             <Link
               href="#"
-              className="block h-[44px] bg-gradient-to-r from-[#AB0169] to-[#F67321] py-3 text-center font-dm-sans font-medium uppercase text-white"
+              className="block h-[44px] bg-gradient-to-r from-[#F67321] to-[#AB0169] py-3 text-center font-dm-sans font-medium uppercase text-white"
             >
               LOGIN
             </Link>
             <Link
               href="#"
-              className="block h-[44px] bg-gradient-to-r from-[#AB0169] to-[#F67321] py-3 text-center font-dm-sans font-medium uppercase text-white"
+              className="block h-[44px] bg-gradient-to-r from-[#F67321] to-[#AB0169] py-3 text-center font-dm-sans font-medium uppercase text-white"
             >
               SIGNUP
             </Link>
