@@ -89,6 +89,6 @@
 
 @layer base {
   body {
-    @apply text-text bg-background;
+    @apply bg-background text-text;
   }
 }
