@@ -14,10 +14,7 @@ const fontSans = FontSans({
 const SignUpForm = () => {
   return (
     <div
-      className={cn(
-        "flex min-h-screen flex-col items-center justify-center font-sans",
-        fontSans.variable,
-      )}
+      className={`flex min-h-screen flex-col items-center justify-center font-sans ${fontSans.variable}`}
     >
       <div className="flex w-full max-w-[312px] flex-col items-center justify-center py-[60px] sm:max-w-[780px] sm:rounded-[20px] sm:border sm:border-border sm:px-[76]">
         <div className="flex w-full flex-col gap-[25px] pb-10 text-center sm:pb-[50px]">
@@ -46,7 +43,7 @@ const SignUpForm = () => {
               type="email"
               name="email"
               placeholder="Enter Email"
-              className="h-12 rounded-md border border-border bg-input px-[15px] py-[12px] text-base placeholder-border"
+              className="h-12 rounded-md border border-border bg-input px-[15px] py-3 text-base placeholder-border"
               required
             />
           </div>
@@ -61,7 +58,7 @@ const SignUpForm = () => {
                 type="password"
                 name="password"
                 placeholder="Enter Password"
-                className="h-12 rounded-md border border-border bg-input px-[15px] py-[12px] placeholder-border"
+                className="h-12 rounded-md border border-border bg-input px-[15px] py-3 placeholder-border"
                 required
               />
             </div>
@@ -77,7 +74,7 @@ const SignUpForm = () => {
                 type="password"
                 name="confirmPassword"
                 placeholder="Confirm Password"
-                className="h-12 rounded-md border border-border bg-input px-[15px] py-[12px] placeholder-border"
+                className="h-12 rounded-md border border-border bg-input px-[15px] py-3 placeholder-border"
                 required
               />
             </div>
