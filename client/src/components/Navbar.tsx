@@ -13,7 +13,7 @@ function Navbar() {
   return (
     <>
       <div>
-        <div className="flex h-[124px] w-full justify-between bg-gradient-to-r from-[var(--accent)] to-[var(--primary)] pb-10 pl-10 pt-10 text-center font-dm-sans text-base font-extrabold uppercase leading-6 tracking-wide text-white sm:justify-center md:justify-between lg:pl-20 lg:pr-20">
+        <div className="flex h-[124px] w-full justify-between bg-gradient-to-r from-[var(--accent)] to-[var(--primary)] pb-10 pl-10 pr-10 pt-10 text-center font-dm-sans text-base font-extrabold uppercase leading-6 tracking-wide text-white sm:justify-center md:justify-between lg:pl-20 lg:pr-20">
           {/* logo */}
           <a
             href="https://transplant.org.au"
