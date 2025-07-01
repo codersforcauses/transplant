@@ -16,7 +16,7 @@ const SignUpForm = () => {
     <div
       className={`flex min-h-screen flex-col items-center justify-center font-sans ${fontSans.variable}`}
     >
-      <div className="flex w-full max-w-[312px] flex-col items-center justify-center py-[60px] sm:max-w-[780px] sm:rounded-[20px] sm:border sm:border-border sm:px-[76]">
+      <div className="mx-4 flex max-w-[312px] flex-col items-center justify-center py-[60px] sm:mx-0 sm:max-w-[780px] sm:rounded-[20px] sm:border sm:border-border sm:px-[76]">
         <div className="flex w-full flex-col gap-[25px] pb-10 text-center sm:pb-[50px]">
           <h1 className="text-3xl font-bold text-primary">Sign Up</h1>
           <p className="text-subtle">
