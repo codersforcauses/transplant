@@ -15,19 +15,19 @@ const SignUpForm = () => {
   return (
     <div
       className={cn(
-        "flex min-h-screen flex-col items-center justify-center px-5 font-sans",
+        "flex min-h-screen flex-col items-center justify-center font-sans",
         fontSans.variable,
       )}
     >
-      <div className="flex w-full max-w-[312px] flex-col items-center justify-center sm:max-w-[780px] sm:rounded-[20px] sm:border sm:border-border sm:px-[76] sm:py-[60px]">
-        <div className="flex w-full flex-col gap-[25px] pb-[50px] text-center">
+      <div className="flex w-full max-w-[312px] flex-col items-center justify-center py-[60px] sm:max-w-[780px] sm:rounded-[20px] sm:border sm:border-border sm:px-[76]">
+        <div className="flex w-full flex-col gap-[25px] pb-10 text-center sm:pb-[50px]">
           <h1 className="text-3xl font-bold text-primary">Sign Up</h1>
           <p className="text-subtle">
             Please enter your details to get started.
           </p>
         </div>
 
-        <div className="flex w-full flex-col justify-center gap-[35px] pb-[35px] text-center">
+        <div className="flex w-full flex-col justify-center gap-[25px] pb-[25px] text-center sm:gap-[35px] sm:pb-[35px]">
           <Button className="h-12" variant="oauth">
             <GoogleIcon />
             Continue with Google
@@ -37,7 +37,7 @@ const SignUpForm = () => {
         </div>
 
         <form className="flex w-full flex-col">
-          <div className="flex flex-col space-y-2.5 pb-[30px]">
+          <div className="flex flex-col gap-2.5 pb-[15px] sm:pb-[30px]">
             <label htmlFor="email" className="font-medium text-primary">
               Email
             </label>
@@ -51,7 +51,7 @@ const SignUpForm = () => {
             />
           </div>
 
-          <div className="flex flex-col gap-x-[30px] pb-[50px] md:flex-row">
+          <div className="flex flex-col gap-[15px] pb-10 md:flex-row md:gap-x-[30px] md:pb-[50px]">
             <div className="flex flex-1 flex-col gap-2.5">
               <label htmlFor="password" className="font-medium text-primary">
                 Password
