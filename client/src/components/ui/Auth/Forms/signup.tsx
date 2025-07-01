@@ -93,7 +93,7 @@ const SignUpForm = () => {
         </form>
         <p className="pt-5 text-sm">
           Already have an account?{" "}
-          <a className="text-primary" href="/login">
+          <a className="text-primary underline" href="/login">
             Login
           </a>
         </p>
