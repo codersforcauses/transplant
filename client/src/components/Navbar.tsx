@@ -4,6 +4,7 @@ import { useState } from "react";
 
 function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const isLoggedIn = false; // -------Placeholder for authentication state-------
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
@@ -12,9 +13,12 @@ function Navbar() {
   return (
     <>
       <div>
-        <div className="flex h-[124px] w-full justify-between bg-gradient-to-r from-[#F67321] to-[#AB0169] pb-10 pl-20 pr-20 pt-10 text-center font-dm-sans text-base font-extrabold uppercase leading-6 tracking-wide text-white">
+        <div className="flex h-[124px] w-full justify-between bg-gradient-to-r from-[var(--accent)] to-[var(--primary)] pb-10 pl-10 pt-10 text-center font-dm-sans text-base font-extrabold uppercase leading-6 tracking-wide text-white sm:justify-center md:justify-between lg:pl-20 lg:pr-20">
           {/* logo */}
-          <a href="https://transplant.org.au">
+          <a
+            href="https://transplant.org.au"
+            className="block pr-5 sm:hidden md:block"
+          >
             <Image
               src="/TA-logo.png"
               alt="Logo of Transplant Australia"
@@ -24,7 +28,7 @@ function Navbar() {
           </a>
           {/* Desktop Menu */}
           <div className="hidden sm:block">
-            <div className="flex h-[44px] w-[561px] gap-[48px]">
+            <div className="flex h-[44px] w-[561px] sm:gap-[50px] md:gap-[40px] lg:gap-[48px]">
               <Link href="#" className="my-auto">
                 HOME
               </Link>
@@ -34,15 +38,30 @@ function Navbar() {
               <Link href="#" className="my-auto">
                 PARTICIPATE
               </Link>
-              <Link href="#" className="my-auto">
-                LOGIN
-              </Link>
-              <Link
-                href="#"
-                className="flex w-[106px] items-center justify-center rounded-full bg-white px-5 text-[#AB0169]"
-              >
-                SIGN UP
-              </Link>
+              {isLoggedIn ? (
+                <Link href="#" className="my-auto">
+                  LOGOUT
+                </Link>
+              ) : (
+                <Link href="#" className="my-auto">
+                  LOGIN
+                </Link>
+              )}
+              {isLoggedIn ? (
+                <Link
+                  href="#"
+                  className="flex w-[106px] items-center justify-center rounded-full bg-white px-5 text-[var(--primary)]"
+                >
+                  Account
+                </Link>
+              ) : (
+                <Link
+                  href="#"
+                  className="flex w-[106px] items-center justify-center rounded-full bg-white text-[var(--primary)]"
+                >
+                  SIGN UP
+                </Link>
+              )}
             </div>
           </div>
           {/* Mobile menu button */}
@@ -102,34 +121,52 @@ function Navbar() {
           <div className="border-t">
             <Link
               href="#"
-              className="block h-[44px] bg-gradient-to-r from-[#F67321] to-[#AB0169] py-3 text-center font-dm-sans font-medium uppercase text-white"
+              className="block h-[44px] bg-gradient-to-r from-[var(--accent)] to-[var(--primary)] py-3 text-center font-dm-sans font-medium uppercase text-white"
             >
               HOME
             </Link>
             <Link
               href="#"
-              className="block h-[44px] bg-gradient-to-r from-[#F67321] to-[#AB0169] py-3 text-center font-dm-sans font-medium uppercase text-white"
+              className="block h-[44px] bg-gradient-to-r from-[var(--accent)] to-[var(--primary)] py-3 text-center font-dm-sans font-medium uppercase text-white"
             >
               ABOUT
             </Link>
             <Link
               href="#"
-              className="block h-[44px] bg-gradient-to-r from-[#F67321] to-[#AB0169] py-3 text-center font-dm-sans font-medium uppercase text-white"
+              className="block h-[44px] bg-gradient-to-r from-[var(--accent)] to-[var(--primary)] py-3 text-center font-dm-sans font-medium uppercase text-white"
             >
               PARTICIPATE
             </Link>
-            <Link
-              href="#"
-              className="block h-[44px] bg-gradient-to-r from-[#F67321] to-[#AB0169] py-3 text-center font-dm-sans font-medium uppercase text-white"
-            >
-              LOGIN
-            </Link>
-            <Link
-              href="#"
-              className="block h-[44px] bg-gradient-to-r from-[#F67321] to-[#AB0169] py-3 text-center font-dm-sans font-medium uppercase text-white"
-            >
-              SIGNUP
-            </Link>
+            {isLoggedIn ? (
+              <Link
+                href="#"
+                className="block h-[44px] bg-gradient-to-r from-[var(--accent)] to-[var(--primary)] py-3 text-center font-dm-sans font-medium uppercase text-white"
+              >
+                LOGOUT
+              </Link>
+            ) : (
+              <Link
+                href="#"
+                className="block h-[44px] bg-gradient-to-r from-[var(--accent)] to-[var(--primary)] py-3 text-center font-dm-sans font-medium uppercase text-white"
+              >
+                LOGIN
+              </Link>
+            )}
+            {isLoggedIn ? (
+              <Link
+                href="#"
+                className="block h-[44px] bg-gradient-to-r from-[var(--accent)] to-[var(--primary)] py-3 text-center font-dm-sans font-medium uppercase text-white"
+              >
+                ACCOUNT
+              </Link>
+            ) : (
+              <Link
+                href="#"
+                className="block h-[44px] bg-gradient-to-r from-[var(--accent)] to-[var(--primary)] py-3 text-center font-dm-sans font-medium uppercase text-white"
+              >
+                SIGNUP
+              </Link>
+            )}
           </div>
         </div>
       )}
