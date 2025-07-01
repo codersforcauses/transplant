@@ -28,7 +28,7 @@ const config = {
         ring: "hsl(var(--ring))",
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
-        "subtle-foreground": "hsl(var(--subtle-foreground))",
+        subtle: "hsl(var(--subtle))",
         "pink-medium": "hsl(var(--pink-medium))",
         "pink-light": "hsl(var(--pink-light))",
         "orange-pale": "hsl(var(--orange-pale))",

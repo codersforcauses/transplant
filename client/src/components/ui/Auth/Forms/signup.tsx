@@ -4,6 +4,7 @@ import { cn } from "@/lib/utils";
 
 import { Button } from "../../button";
 import { GoogleIcon } from "../../google-icon";
+import { Separator } from "../../separator";
 
 const fontSans = FontSans({
   subsets: ["latin"],
@@ -18,10 +19,10 @@ const SignUpForm = () => {
         fontSans.variable,
       )}
     >
-      <div className="flex w-full max-w-[312px] flex-col items-center justify-center sm:max-w-[628px]">
+      <div className="flex w-full max-w-[312px] flex-col items-center justify-center sm:max-w-[780px] sm:rounded-[20px] sm:border sm:border-border sm:px-[76] sm:py-[60px]">
         <div className="flex w-full flex-col gap-[25px] pb-[50px] text-center">
-          <h1 className="heading-lg">Sign Up</h1>
-          <p className="body-sm text-subtle-foreground">
+          <h1 className="text-3xl font-bold text-primary">Sign Up</h1>
+          <p className="text-subtle">
             Please enter your details to get started.
           </p>
         </div>
@@ -31,15 +32,13 @@ const SignUpForm = () => {
             <GoogleIcon />
             Continue with Google
           </Button>
-          <p className="body-sm text-subtle-foreground">OR</p>
-          <p className="body-sm text-subtle-foreground">
-            Sign up with your email address
-          </p>
+          <Separator />
+          <p className="text-subtle">Sign up with your email address</p>
         </div>
 
         <form className="flex w-full flex-col">
           <div className="flex flex-col space-y-2.5 pb-[30px]">
-            <label htmlFor="email" className="body-sm-medium text-primary">
+            <label htmlFor="email" className="font-medium text-primary">
               Email
             </label>
             <input
@@ -47,14 +46,14 @@ const SignUpForm = () => {
               type="email"
               name="email"
               placeholder="Enter Email"
-              className="body-sm h-12 rounded-md border border-border bg-input px-[15px] py-[12px] placeholder-gray-300"
+              className="h-12 rounded-md border border-border bg-input px-[15px] py-[12px] text-base placeholder-border"
               required
             />
           </div>
 
-          <div className="flex w-full flex-col gap-[30px] pb-[50px] md:flex-row">
+          <div className="flex flex-col gap-x-[30px] pb-[50px] md:flex-row">
             <div className="flex flex-1 flex-col gap-2.5">
-              <label htmlFor="password" className="body-sm-medium text-primary">
+              <label htmlFor="password" className="font-medium text-primary">
                 Password
               </label>
               <input
@@ -62,14 +61,14 @@ const SignUpForm = () => {
                 type="password"
                 name="password"
                 placeholder="Enter Password"
-                className="body-sm h-12 rounded-md border border-border bg-input px-[15px] py-[12px] placeholder-gray-300"
+                className="h-12 rounded-md border border-border bg-input px-[15px] py-[12px] placeholder-border"
                 required
               />
             </div>
             <div className="flex flex-1 flex-col gap-2.5">
               <label
                 htmlFor="confirmPassword"
-                className="body-sm-medium text-primary"
+                className="font-medium text-primary"
               >
                 Confirm Password
               </label>
@@ -78,17 +77,21 @@ const SignUpForm = () => {
                 type="password"
                 name="confirmPassword"
                 placeholder="Confirm Password"
-                className="body-sm h-12 rounded-md border border-border bg-input px-[15px] py-[12px] placeholder-gray-300"
+                className="h-12 rounded-md border border-border bg-input px-[15px] py-[12px] placeholder-border"
                 required
               />
             </div>
           </div>
 
-          <Button className="body-md" variant="gradient" type="submit">
+          <Button
+            className="h-12 w-full text-lg"
+            variant="gradient"
+            type="submit"
+          >
             Sign Up
           </Button>
         </form>
-        <p className="caption pt-5">
+        <p className="pt-5 text-sm">
           Already have an account?{" "}
           <a className="text-primary" href="/login">
             Login

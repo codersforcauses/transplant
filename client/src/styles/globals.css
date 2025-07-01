@@ -5,14 +5,14 @@
 @layer base {
   :root {
     --background: 0 0% 100%; /* #FFFFFF */
-    --foreground: 240 1.5% 29.6%; /* #4C4C4E */
-    --subtle-foreground: 255 3.6% 48.6%; /* #78777E */
+    --foreground: 240 1% 33%; /* #515154 */
+    --subtle: 255 3.6% 48.6%; /* #78777E */
 
     --card: 0 0% 100%; /* #FFFFFF */
-    --card-foreground: 240 1.5% 29.6%; /* #4C4C4E */
+    --card-foreground: 240 1% 33%; /* #515154 */
 
     --popover: 0 0% 100%; /* #FFFFFF */
-    --popover-foreground: 240 1.5% 29.6%; /* #4C4C4E */
+    --popover-foreground: 240 1% 33%; /* #515154 */
 
     --primary: 322 98.6% 33.1%; /* #AB0169 */
     --primary-foreground: 0 0% 100%; /* #FFFFFF */
@@ -24,7 +24,7 @@
     --muted-foreground: 270 6.7% 66.1%; /* #AEA9B1 */
 
     --accent: 41.6 95.7% 61.2%; /* #FDBC38 */
-    --accent-foreground: 240 1.5% 29.6%; /* #4C4C4E */
+    --accent-foreground: 240 1% 33%; /* #515154 */
 
     --destructive: 1.7 87.6% 64.3%; /* #F15859 */
     --destructive-foreground: 0 0% 100%; /* #FFFFFF */
@@ -80,22 +80,4 @@
   body {
     @apply bg-background text-foreground;
   }
-}
-
-@layer components {
-	.heading-lg {
-		@apply text-[32px] leading-10 tracking-[0.15px] font-bold text-primary;
-	}
-	.body-sm {
-		@apply text-[16px] leading-6 tracking-[0.5px] font-normal;
-	}
-	.body-sm-medium {
-		@apply text-[16px] leading-6 tracking-[0.5px] font-medium;
-	}
-	.body-md {
-		@apply text-[24px] leading-6 tracking-[0.5px] font-medium;
-	}
-	.caption {
-		@apply text-[14px] leading-6 tracking-[0.5px] font-normal;
-	}
 }
