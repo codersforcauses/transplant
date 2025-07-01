@@ -81,3 +81,21 @@
     @apply bg-background text-foreground;
   }
 }
+
+@layer components {
+	.heading-lg {
+		@apply text-[32px] leading-10 tracking-[0.15px] font-bold text-primary;
+	}
+	.body-sm {
+		@apply text-[16px] leading-6 tracking-[0.5px] font-normal;
+	}
+	.body-sm-medium {
+		@apply text-[16px] leading-6 tracking-[0.5px] font-medium;
+	}
+	.body-md {
+		@apply text-[24px] leading-6 tracking-[0.5px] font-medium;
+	}
+	.caption {
+		@apply text-[14px] leading-6 tracking-[0.5px] font-normal;
+	}
+}
