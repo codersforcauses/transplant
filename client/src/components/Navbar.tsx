@@ -106,60 +106,63 @@ function Navbar() {
       </div>
 
       {/*  Mobile menu, show/hide based on menu state.*/}
-      {isMobileMenuOpen && (
-        <div className="sm:hidden" id="mobile-menu">
-          <div className="border-t">
+      <div
+        id="mobile-menu"
+        className={`overflow-hidden transition-all duration-500 ease-in-out ${
+          isMobileMenuOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
+        }`}
+      >
+        <div className="border-t">
+          <Link
+            href="#"
+            className="block h-11 bg-gradient-to-r from-[var(--accent)] to-[var(--primary)] py-3 text-center font-dm-sans font-medium uppercase text-white transition-opacity hover:py-2 hover:text-lg hover:opacity-85"
+          >
+            HOME
+          </Link>
+          <Link
+            href="#"
+            className="block h-11 bg-gradient-to-r from-[var(--accent)] to-[var(--primary)] py-3 text-center font-dm-sans font-medium uppercase text-white transition-opacity hover:py-2 hover:text-lg hover:opacity-85"
+          >
+            ABOUT
+          </Link>
+          <Link
+            href="#"
+            className="block h-11 bg-gradient-to-r from-[var(--accent)] to-[var(--primary)] py-3 text-center font-dm-sans font-medium uppercase text-white transition-opacity hover:py-2 hover:text-lg hover:opacity-85"
+          >
+            PARTICIPATE
+          </Link>
+          {isLoggedIn ? (
             <Link
               href="#"
-              className="block h-11 bg-gradient-to-r from-[var(--accent)] to-[var(--primary)] py-3 text-center font-dm-sans font-medium uppercase text-white"
+              className="block h-11 bg-gradient-to-r from-[var(--accent)] to-[var(--primary)] py-3 text-center font-dm-sans font-medium uppercase text-white transition-opacity hover:py-2 hover:text-lg hover:opacity-85"
             >
-              HOME
+              LOGOUT
             </Link>
+          ) : (
             <Link
               href="#"
-              className="block h-11 bg-gradient-to-r from-[var(--accent)] to-[var(--primary)] py-3 text-center font-dm-sans font-medium uppercase text-white"
+              className="block h-11 bg-gradient-to-r from-[var(--accent)] to-[var(--primary)] py-3 text-center font-dm-sans font-medium uppercase text-white transition-opacity hover:py-2 hover:text-lg hover:opacity-85"
             >
-              ABOUT
+              LOGIN
             </Link>
+          )}
+          {isLoggedIn ? (
             <Link
               href="#"
-              className="block h-11 bg-gradient-to-r from-[var(--accent)] to-[var(--primary)] py-3 text-center font-dm-sans font-medium uppercase text-white"
+              className="block h-11 bg-gradient-to-r from-[var(--accent)] to-[var(--primary)] py-3 text-center font-dm-sans font-medium uppercase text-white transition-opacity hover:py-2 hover:text-lg hover:opacity-85"
             >
-              PARTICIPATE
+              ACCOUNT
             </Link>
-            {isLoggedIn ? (
-              <Link
-                href="#"
-                className="block h-11 bg-gradient-to-r from-[var(--accent)] to-[var(--primary)] py-3 text-center font-dm-sans font-medium uppercase text-white"
-              >
-                LOGOUT
-              </Link>
-            ) : (
-              <Link
-                href="#"
-                className="block h-11 bg-gradient-to-r from-[var(--accent)] to-[var(--primary)] py-3 text-center font-dm-sans font-medium uppercase text-white"
-              >
-                LOGIN
-              </Link>
-            )}
-            {isLoggedIn ? (
-              <Link
-                href="#"
-                className="block h-11 bg-gradient-to-r from-[var(--accent)] to-[var(--primary)] py-3 text-center font-dm-sans font-medium uppercase text-white"
-              >
-                ACCOUNT
-              </Link>
-            ) : (
-              <Link
-                href="#"
-                className="block h-11 bg-gradient-to-r from-[var(--accent)] to-[var(--primary)] py-3 text-center font-dm-sans font-medium uppercase text-white"
-              >
-                SIGNUP
-              </Link>
-            )}
-          </div>
+          ) : (
+            <Link
+              href="#"
+              className="block h-11 bg-gradient-to-r from-[var(--accent)] to-[var(--primary)] py-3 text-center font-dm-sans font-medium uppercase text-white transition-opacity hover:py-2 hover:text-lg hover:opacity-85"
+            >
+              SIGNUP
+            </Link>
+          )}
         </div>
-      )}
+      </div>
     </>
   );
 }
