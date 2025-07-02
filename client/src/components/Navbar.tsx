@@ -13,7 +13,7 @@ function Navbar() {
   return (
     <>
       <div>
-        <div className="flex h-[124px] w-full justify-between bg-gradient-to-r from-[var(--accent)] to-[var(--primary)] pb-10 pl-10 pr-10 pt-10 text-center font-dm-sans text-base font-extrabold uppercase leading-6 tracking-wide text-white sm:justify-center md:justify-between lg:pl-20 lg:pr-20">
+        <div className="md:px-15 flex h-32 w-full justify-between bg-gradient-to-r from-[var(--accent)] to-[var(--primary)] p-10 text-center font-dm-sans text-base font-extrabold uppercase leading-6 tracking-wide text-white sm:justify-center md:justify-between lg:px-20">
           {/* logo */}
           <a
             href="https://transplant.org.au"
@@ -28,36 +28,26 @@ function Navbar() {
           </a>
           {/* Desktop Menu */}
           <div className="hidden sm:block">
-            <div className="flex h-[44px] w-[561px] sm:gap-[50px] md:gap-[40px] lg:gap-[48px]">
-              <Link href="#" className="my-auto">
-                HOME
-              </Link>
-              <Link href="#" className="my-auto">
-                ABOUT
-              </Link>
-              <Link href="#" className="my-auto">
-                PARTICIPATE
-              </Link>
+            <div className="flex h-11 items-center sm:gap-11 md:gap-12">
+              <Link href="#">HOME</Link>
+              <Link href="#">ABOUT</Link>
+              <Link href="#">PARTICIPATE</Link>
               {isLoggedIn ? (
-                <Link href="#" className="my-auto">
-                  LOGOUT
-                </Link>
+                <Link href="#">LOGOUT</Link>
               ) : (
-                <Link href="#" className="my-auto">
-                  LOGIN
-                </Link>
+                <Link href="#">LOGIN</Link>
               )}
               {isLoggedIn ? (
                 <Link
                   href="#"
-                  className="flex w-[106px] items-center justify-center rounded-full bg-white px-5 text-[var(--primary)]"
+                  className="flex w-28 rounded-full bg-white px-5 py-2 text-[var(--primary)]"
                 >
                   Account
                 </Link>
               ) : (
                 <Link
                   href="#"
-                  className="flex w-[106px] items-center justify-center rounded-full bg-white text-[var(--primary)]"
+                  className="flex w-28 text-nowrap rounded-full bg-white px-5 py-2 text-[var(--primary)]"
                 >
                   SIGN UP
                 </Link>
@@ -68,7 +58,7 @@ function Navbar() {
           <div className="sm:hidden">
             <button
               type="button"
-              className="relative inline-flex items-center justify-center rounded-md p-2"
+              className="relative inline-flex items-center rounded-md p-2"
               aria-controls="mobile-menu"
               aria-expanded={isMobileMenuOpen}
               onClick={toggleMobileMenu}
@@ -121,33 +111,33 @@ function Navbar() {
           <div className="border-t">
             <Link
               href="#"
-              className="block h-[44px] bg-gradient-to-r from-[var(--accent)] to-[var(--primary)] py-3 text-center font-dm-sans font-medium uppercase text-white"
+              className="block h-11 bg-gradient-to-r from-[var(--accent)] to-[var(--primary)] py-3 text-center font-dm-sans font-medium uppercase text-white"
             >
               HOME
             </Link>
             <Link
               href="#"
-              className="block h-[44px] bg-gradient-to-r from-[var(--accent)] to-[var(--primary)] py-3 text-center font-dm-sans font-medium uppercase text-white"
+              className="block h-11 bg-gradient-to-r from-[var(--accent)] to-[var(--primary)] py-3 text-center font-dm-sans font-medium uppercase text-white"
             >
               ABOUT
             </Link>
             <Link
               href="#"
-              className="block h-[44px] bg-gradient-to-r from-[var(--accent)] to-[var(--primary)] py-3 text-center font-dm-sans font-medium uppercase text-white"
+              className="block h-11 bg-gradient-to-r from-[var(--accent)] to-[var(--primary)] py-3 text-center font-dm-sans font-medium uppercase text-white"
             >
               PARTICIPATE
             </Link>
             {isLoggedIn ? (
               <Link
                 href="#"
-                className="block h-[44px] bg-gradient-to-r from-[var(--accent)] to-[var(--primary)] py-3 text-center font-dm-sans font-medium uppercase text-white"
+                className="block h-11 bg-gradient-to-r from-[var(--accent)] to-[var(--primary)] py-3 text-center font-dm-sans font-medium uppercase text-white"
               >
                 LOGOUT
               </Link>
             ) : (
               <Link
                 href="#"
-                className="block h-[44px] bg-gradient-to-r from-[var(--accent)] to-[var(--primary)] py-3 text-center font-dm-sans font-medium uppercase text-white"
+                className="block h-11 bg-gradient-to-r from-[var(--accent)] to-[var(--primary)] py-3 text-center font-dm-sans font-medium uppercase text-white"
               >
                 LOGIN
               </Link>
@@ -155,14 +145,14 @@ function Navbar() {
             {isLoggedIn ? (
               <Link
                 href="#"
-                className="block h-[44px] bg-gradient-to-r from-[var(--accent)] to-[var(--primary)] py-3 text-center font-dm-sans font-medium uppercase text-white"
+                className="block h-11 bg-gradient-to-r from-[var(--accent)] to-[var(--primary)] py-3 text-center font-dm-sans font-medium uppercase text-white"
               >
                 ACCOUNT
               </Link>
             ) : (
               <Link
                 href="#"
-                className="block h-[44px] bg-gradient-to-r from-[var(--accent)] to-[var(--primary)] py-3 text-center font-dm-sans font-medium uppercase text-white"
+                className="block h-11 bg-gradient-to-r from-[var(--accent)] to-[var(--primary)] py-3 text-center font-dm-sans font-medium uppercase text-white"
               >
                 SIGNUP
               </Link>
