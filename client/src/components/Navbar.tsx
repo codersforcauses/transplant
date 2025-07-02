@@ -82,13 +82,13 @@ function Navbar() {
                 height="22"
                 fill="none"
                 viewBox="0 0 31 22"
-                stroke-width="2.5"
+                strokeWidth="2.5"
                 stroke="white"
                 aria-hidden="true"
               >
                 <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                   d="M2.5 2.5h26M2.5 11h26M2.5 19.5h26"
                 />
               </svg>
@@ -99,14 +99,14 @@ function Navbar() {
                 height="24"
                 fill="none"
                 viewBox="0 0 24 24"
-                stroke-width="2"
+                strokeWidth="2"
                 stroke="white"
                 aria-hidden="true"
                 data-slot="icon"
               >
                 <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                   d="M6 18 18 6M6 6l12 12"
                 />
               </svg>
