@@ -40,14 +40,14 @@ function Navbar() {
               {isLoggedIn ? (
                 <Link
                   href="#"
-                  className="flex w-28 rounded-full bg-white px-5 py-2 text-[var(--primary)]"
+                  className="flex rounded-full bg-white px-5 py-2 text-[var(--primary)]"
                 >
                   Account
                 </Link>
               ) : (
                 <Link
                   href="#"
-                  className="flex w-28 text-nowrap rounded-full bg-white px-5 py-2 text-[var(--primary)]"
+                  className="flex text-nowrap rounded-full bg-white px-5 py-2 text-[var(--primary)]"
                 >
                   SIGN UP
                 </Link>
