@@ -3,10 +3,10 @@ import Link from "next/link";
 import { useState } from "react";
 
 function Navbar() {
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const isLoggedIn = false; // -------Placeholder for authentication state-------
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState<boolean>(false);
+  const isLoggedIn: boolean = false; // -------Placeholder for authentication state-------
 
-  const toggleMobileMenu = () => {
+  const toggleMobileMenu = (): void => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
 
