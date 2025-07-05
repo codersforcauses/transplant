@@ -3,6 +3,7 @@ from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, Permis
 from django.utils import timezone
 import uuid
 
+
 class UserManager(BaseUserManager):
     def create_user(self, email, password=None, **extra_fields):
         if not email:
@@ -18,7 +19,6 @@ class UserManager(BaseUserManager):
         extra_fields.setdefault("is_staff", True)
         extra_fields.setdefault("is_superuser", True)
         extra_fields.setdefault("role", "ADMIN")
-
         return self.create_user(email, password, **extra_fields)
 
 
@@ -46,13 +46,13 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     def __str__(self):
         return self.email
-    
+
 
 class Registration(models.Model):
     STATUS_CHOICES = [
-        ('draft',     'Draft'),
+        ('draft', 'Draft'),
         ('submitted', 'Submitted'),
-        ('paid',      'Paid'),
+        ('paid', 'Paid'),
     ]
 
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
