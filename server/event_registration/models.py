@@ -57,6 +57,9 @@ class Registration(models.Model):
 
 class RegistrantDetail(models.Model):
     registration = models.OneToOneField(Registration, on_delete=models.CASCADE, related_name='registrant_details')
+    is_user = models.BooleanField(default=False)
+    
+    # Peronsal data
     first_name = models.CharField(max_length=100, null=True)
     middle_name = models.CharField(max_length=100, null=True)
     last_name = models.CharField(max_length=100, null=True)
@@ -67,15 +70,23 @@ class RegistrantDetail(models.Model):
     gender = models.CharField(max_length=1 , choices=Gender.choices, null=True)
     date_of_birth = models.DateField(null=True)
     email = models.EmailField(null=True)
+    
+    # Address
     address_line1 = models.CharField(max_length=100, null=True)
     address_line2 = models.CharField(max_length=100, null=True)
     state = models.CharField(max_length=50, null=True)
     postcode = models.CharField(max_length=10, null=True)
     country = models.CharField(max_length=100, null=True)
+    
+    # Travel
     has_travel_insurance = models.BooleanField(null=True)
     repatriation_details = models.TextField(null=True)
+    
+    # Phone
     day_phone = models.CharField(max_length=20, null=True)
     cell_phone = models.CharField(max_length=20, null=True)
+
+    # Identity
     class Heritage(models.TextChoices):
         ABORIGINAL='A',_('Aboriginal')
         TORRES_STRAIT='T',_('Torres Straint Islander')
@@ -86,24 +97,33 @@ class RegistrantDetail(models.Model):
     country_of_birth_other = models.CharField(max_length=50, null=True)
     speaks_english = models.BooleanField(null=True)
     other_language = models.CharField(max_length=50, null=True)
+    
+    # Emergency
     emergency_contact_name = models.CharField(max_length=100, null=True)
     emergency_contact_phone = models.CharField(max_length=100, null=True)
     secondary_emergency_contact_name = models.CharField(max_length=100, null=True)
     secondary_emergency_contact_phone = models.CharField(max_length=100, null=True)
+    
+    # Competition
     representing_state = models.CharField(max_length=50, null=True)
     representing_country = models.CharField(max_length=100, null=True)
     supporter_info = models.CharField(max_length=100, null=True)
+    
+    # Medical
     transplant_types = models.CharField(max_length=100, null=True)
     other_transplant_type = models.CharField(max_length=100, null=True)
     awaiting_transplant_type = models.CharField(max_length=100, null=True)
     transplant_date = models.DateField(null=True)
     ongoing_care_hospital = models.CharField(max_length=100, null=True)
-    has_pre_existing_conditions=models.BooleanField(null=True)
-    pre_existing_conditions_details=models.TextField(null=True)
-    requires_wheelchair_assistance=models.BooleanField(null=True)
-    has_dietary_requirements=models.BooleanField(null=True)
-    dietary_requirements_details=models.TextField(null=True)
-    wants_to_volunteer=models.BooleanField(null=True)
-    wants_junior_activities_info=models.BooleanField(null=True)
+    has_pre_existing_conditions = models.BooleanField(null=True)
+    pre_existing_conditions_details = models.TextField(null=True)
+    requires_wheelchair_assistance = models.BooleanField(null=True)
+    has_dietary_requirements = models.BooleanField(null=True)
+    dietary_requirements_details = models.TextField(null=True)
+    
+    # Preferences
+    wants_to_volunteer = models.BooleanField(null=True)
+    wants_junior_activities_info = models.BooleanField(null=True)
+    
     created_at = models.DateTimeField(auto_now=True)
     updated_at = models.DateTimeField(auto_now_add=True)
