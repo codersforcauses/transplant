@@ -21,4 +21,5 @@ class UserAdmin(BaseUserAdmin):
         }),
     )
 
+
 admin.site.register(RegistrantDetail)

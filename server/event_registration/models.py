@@ -1,7 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
 from django.utils import timezone
-import uuid
 from django.utils.translation import gettext_lazy as _
 
 
@@ -49,7 +48,8 @@ class User(AbstractBaseUser, PermissionsMixin):
     def __str__(self):
         return self.email
 
-#################### Placeholder for Registration model #####################
+
+# Placeholder for Registration model
 class Registration(models.Model):
     pass
 ###############################################################################
@@ -58,7 +58,7 @@ class Registration(models.Model):
 class RegistrantDetail(models.Model):
     registration = models.OneToOneField(Registration, on_delete=models.CASCADE, related_name='registrant_details')
     is_user = models.BooleanField(default=False)
-    
+
     # Peronsal data
     first_name = models.CharField(max_length=100, null=True)
     middle_name = models.CharField(max_length=100, null=True)
@@ -70,45 +70,45 @@ class RegistrantDetail(models.Model):
     gender = models.CharField(max_length=1 , choices=Gender.choices, null=True)
     date_of_birth = models.DateField(null=True)
     email = models.EmailField(null=True)
-    
+
     # Address
     address_line1 = models.CharField(max_length=100, null=True)
     address_line2 = models.CharField(max_length=100, null=True)
     state = models.CharField(max_length=50, null=True)
     postcode = models.CharField(max_length=10, null=True)
     country = models.CharField(max_length=100, null=True)
-    
+
     # Travel
     has_travel_insurance = models.BooleanField(null=True)
     repatriation_details = models.TextField(null=True)
-    
+
     # Phone
     day_phone = models.CharField(max_length=20, null=True)
     cell_phone = models.CharField(max_length=20, null=True)
 
     # Identity
     class Heritage(models.TextChoices):
-        ABORIGINAL='A',_('Aboriginal')
-        TORRES_STRAIT='T',_('Torres Straint Islander')
-        BOTH='B',_('Aboriginal and Torres Straint Islander')
-        NONE='N',_('None')
+        ABORIGINAL = 'A', _('Aboriginal')
+        TORRES_STRAIT = 'T', _('Torres Straint Islander')
+        BOTH = 'B', _('Aboriginal and Torres Straint Islander')
+        NONE = 'N', _('None')
     aboriginal_torres_strait_islander=models.CharField(max_length=50, choices=Heritage.choices, null=True)
     country_of_birth = models.CharField(max_length=50, null=True)
     country_of_birth_other = models.CharField(max_length=50, null=True)
     speaks_english = models.BooleanField(null=True)
     other_language = models.CharField(max_length=50, null=True)
-    
+
     # Emergency
     emergency_contact_name = models.CharField(max_length=100, null=True)
     emergency_contact_phone = models.CharField(max_length=100, null=True)
     secondary_emergency_contact_name = models.CharField(max_length=100, null=True)
     secondary_emergency_contact_phone = models.CharField(max_length=100, null=True)
-    
+
     # Competition
     representing_state = models.CharField(max_length=50, null=True)
     representing_country = models.CharField(max_length=100, null=True)
     supporter_info = models.CharField(max_length=100, null=True)
-    
+
     # Medical
     transplant_types = models.CharField(max_length=100, null=True)
     other_transplant_type = models.CharField(max_length=100, null=True)
@@ -120,10 +120,10 @@ class RegistrantDetail(models.Model):
     requires_wheelchair_assistance = models.BooleanField(null=True)
     has_dietary_requirements = models.BooleanField(null=True)
     dietary_requirements_details = models.TextField(null=True)
-    
+
     # Preferences
     wants_to_volunteer = models.BooleanField(null=True)
     wants_junior_activities_info = models.BooleanField(null=True)
-    
+
     created_at = models.DateTimeField(auto_now=True)
     updated_at = models.DateTimeField(auto_now_add=True)
