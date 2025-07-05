@@ -8,34 +8,50 @@ User = get_user_model()
 class UserRegistrationTest(TestCase):
     def setUp(self):
         self.existing_user = User.objects.create_user(
-            email="test@example.com",
+            email="existing@example.com",
             password="Is this a good password?"
         )
         self.url = reverse("register_user")
 
-    def test_valid_registration(self):
+    def check_data(
+        self,
+        email="new@example.com",
+        password1="Another decent password...",
+        password2="Another decent password...",
+        expected_status=400
+    ):
         data = {
-            "email": "test2@example.com",
-            "password": "This is a good password!"
+            "email": email,
+            "password1": password1,
+            "password2": password2,
         }
-
         response = self.client.post(self.url, data)
-        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.status_code, expected_status)
+
+    def test_valid_registration(self):
+        self.check_data(expected_status=200)
+        email = "new@example.com"
+        password = "Another decent password..."
+
         try:
-            new_user = User.objects.get(email="test2@example.com")
+            new_user = User.objects.get(email=email)
         except User.DoesNotExist:
             self.fail("New user was not created.")
-        self.assertEqual(new_user.email, data["email"])
-        self.assertTrue(new_user.check_password(data["password"]))
+        self.assertEqual(new_user.email, email)
+        self.assertTrue(new_user.check_password(password))
 
     def test_empty_form(self):
         response = self.client.post(self.url)
         self.assertEqual(response.status_code, 400)
 
     def test_email_collision(self):
-        data = {
-            "email": "test@example.com",
-            "password": "Another decent password..."
-        }
-        response = self.client.post(self.url, data)
-        self.assertEqual(response.status_code, 400)
+        self.check_data(email="existing@example.com")
+
+    def test_capitalised_collision(self):
+        self.check_data(email="existing@EXAMPLE.com", expected_status=200)
+        self.assertFalse(User.objects.filter(email__exact='existing@EXISTING.com').exists())
+        self.assertFalse(User.objects.get(email="existing@example.com").check_password("Another decent password..."))
+
+    def test_invalid_email(self):
+        self.check_data(email="test.com")
+        self.assertFalse(User.objects.filter(email__iexact='test.com').exists())
