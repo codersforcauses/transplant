@@ -8,7 +8,6 @@ def register_user(request):
     if not form.is_valid():
         return HttpResponse(status=400)
 
-    # check if duplicate emails produce an invalid form
-
+    # Email collisions will cause a 400 error, not a 409
     form.save()
     return HttpResponse(status=200)
