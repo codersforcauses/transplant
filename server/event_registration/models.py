@@ -63,11 +63,12 @@ class RegistrantDetail(models.Model):
     first_name = models.CharField(max_length=100, null=True)
     middle_name = models.CharField(max_length=100, null=True)
     last_name = models.CharField(max_length=100, null=True)
+
     class Gender(models.TextChoices):
         MALE = 'M', _("Male")
         FEMALE = 'F', _('Female')
         OTHER = 'O', _('Other')
-    gender = models.CharField(max_length=1 , choices=Gender.choices, null=True)
+    gender = models.CharField(max_length=1, choices=Gender.choices, null=True)
     date_of_birth = models.DateField(null=True)
     email = models.EmailField(null=True)
 
@@ -92,7 +93,7 @@ class RegistrantDetail(models.Model):
         TORRES_STRAIT = 'T', _('Torres Straint Islander')
         BOTH = 'B', _('Aboriginal and Torres Straint Islander')
         NONE = 'N', _('None')
-    aboriginal_torres_strait_islander=models.CharField(max_length=50, choices=Heritage.choices, null=True)
+    aboriginal_torres_strait_islander = models.CharField(max_length=50, choices=Heritage.choices, null=True)
     country_of_birth = models.CharField(max_length=50, null=True)
     country_of_birth_other = models.CharField(max_length=50, null=True)
     speaks_english = models.BooleanField(null=True)
