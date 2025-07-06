@@ -1,6 +1,7 @@
 import { Inter as FontSans } from "next/font/google";
 import { useState } from "react";
 
+import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 import { usePings } from "@/hooks/pings";
 import { cn } from "@/lib/utils";
@@ -35,6 +36,7 @@ export default function Home() {
           Response from server: <span>{data as string}</span>
         </p>
       </main>
+      <Footer />
     </>
   );
 }
