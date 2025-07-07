@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap");
 
 @tailwind base;
 @tailwind components;
@@ -7,30 +7,30 @@
 @layer base {
   :root {
     --text: #515154;
-	--subtle: #78777E;
-	--border: #AEA9B1;
-    --background: #FFFFFF;
-	--footer: #F4F4F4;
-    --primary: #AB0169;
-    --secondary: #FFEED1;
-    --accent: #F67423;
-    --font-sans: 'DM Sans', Helvetica, sans-serif;
-	--radius: 0.5rem;
+    --subtle: #78777e;
+    --border: #aea9b1;
+    --background: #ffffff;
+    --footer: #f4f4f4;
+    --primary: #ab0169;
+    --secondary: #ffeed1;
+    --accent: #f67423;
+    --font-sans: "DM Sans", Helvetica, sans-serif;
+    --radius: 0.5rem;
   }
   .dark {
-    --text: #CCCCCC;
-	--subtle: #B3B3B3;
-	--border: #404045;
-    --background: #1C1C1F;
-	--footer: #232326;
-    --primary: #EF5DA0;
-    --secondary: #4E3A23;
-    --accent: #FF8C47;
+    --text: #cccccc;
+    --subtle: #b3b3b3;
+    --border: #404045;
+    --background: #1c1c1f;
+    --footer: #232326;
+    --primary: #ef5da0;
+    --secondary: #4e3a23;
+    --accent: #ff8c47;
   }
 }
 
 @layer base {
   body {
-    @apply bg-background text-text font-sans;
+    @apply bg-background font-sans text-text;
   }
 }
