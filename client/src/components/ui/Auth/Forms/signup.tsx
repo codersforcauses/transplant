@@ -1,30 +1,19 @@
-import { Inter as FontSans } from "next/font/google";
-
-import { cn } from "@/lib/utils";
-
 import { Button } from "../../button";
 import { GoogleIcon } from "../../google-icon";
 import { Separator } from "../../separator";
 
-const fontSans = FontSans({
-  subsets: ["latin"],
-  variable: "--font-sans",
-});
-
 const SignUpForm = () => {
   return (
-    <div
-      className={`flex min-h-screen flex-col items-center justify-center font-sans ${fontSans.variable}`}
-    >
-      <div className="mx-4 flex max-w-[312px] flex-col items-center justify-center py-[60px] sm:mx-0 sm:max-w-[780px] sm:rounded-[20px] sm:border sm:border-border sm:px-[76]">
-        <div className="flex w-full flex-col gap-[25px] pb-10 text-center sm:pb-[50px]">
+    <div className="flex min-h-screen flex-col items-center justify-center">
+      <div className="mx-4 flex max-w-xs flex-col items-center justify-center py-16 sm:mx-0 sm:max-w-3xl sm:rounded-2xl sm:border sm:border-border sm:px-20">
+        <div className="flex w-full flex-col gap-6 pb-10 text-center sm:pb-16">
           <h1 className="text-3xl font-bold text-primary">Sign Up</h1>
           <p className="text-subtle">
             Please enter your details to get started.
           </p>
         </div>
 
-        <div className="flex w-full flex-col justify-center gap-[25px] pb-[25px] text-center sm:gap-[35px] sm:pb-[35px]">
+        <div className="flex w-full flex-col justify-center gap-6 pb-6 text-center sm:gap-9 sm:pb-9">
           <Button className="h-12" variant="oauth">
             <GoogleIcon />
             Continue with Google
@@ -34,7 +23,7 @@ const SignUpForm = () => {
         </div>
 
         <form className="flex w-full flex-col">
-          <div className="flex flex-col gap-2.5 pb-[15px] sm:pb-[30px]">
+          <div className="flex flex-col gap-2.5 pb-4 sm:pb-8">
             <label htmlFor="email" className="font-medium text-primary">
               Email
             </label>
@@ -43,12 +32,12 @@ const SignUpForm = () => {
               type="email"
               name="email"
               placeholder="Enter Email"
-              className="h-12 rounded-md border border-border bg-input px-[15px] py-3 text-base placeholder-border"
+              className="bg-input h-12 rounded-md border border-border px-4 py-3 text-base placeholder-border"
               required
             />
           </div>
 
-          <div className="flex flex-col gap-[15px] pb-10 md:flex-row md:gap-x-[30px] md:pb-[50px]">
+          <div className="flex flex-col gap-4 pb-10 md:flex-row md:gap-x-8 md:pb-12">
             <div className="flex flex-1 flex-col gap-2.5">
               <label htmlFor="password" className="font-medium text-primary">
                 Password
@@ -58,7 +47,7 @@ const SignUpForm = () => {
                 type="password"
                 name="password"
                 placeholder="Enter Password"
-                className="h-12 rounded-md border border-border bg-input px-[15px] py-3 placeholder-border"
+                className="bg-input h-12 rounded-md border border-border px-4 py-3 placeholder-border"
                 required
               />
             </div>
@@ -74,7 +63,7 @@ const SignUpForm = () => {
                 type="password"
                 name="confirmPassword"
                 placeholder="Confirm Password"
-                className="h-12 rounded-md border border-border bg-input px-[15px] py-3 placeholder-border"
+                className="bg-input h-12 rounded-md border border-border px-4 py-3 placeholder-border"
                 required
               />
             </div>
