@@ -55,12 +55,20 @@ class Registration(models.Model):
         ('paid', 'Paid'),
     ]
 
+    AGE_GROUPS = [
+        ('under_18', 'Under 18'),
+        ('18_25', '18-25'),
+        ('26_35', '26-35'),
+        ('36_50', '36-50'),
+        ('over_50', 'Over 50'),
+    ]
+
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='registrations')
     status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='draft')
 
     registration_category = models.CharField(max_length=50, blank=True)
-    age_group = models.CharField(max_length=50, blank=True)
+    age_group = models.CharField(max_length=20, choices=AGE_GROUPS, blank=True)
     tshirt_size = models.CharField(max_length=20, blank=True)
     current_step = models.IntegerField(default=1)
     withdrawn_at = models.DateTimeField(null=True, blank=True)
