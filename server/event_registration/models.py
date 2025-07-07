@@ -68,8 +68,8 @@ class RegistrantDetail(models.Model):
         MALE = 'M', _("Male")
         FEMALE = 'F', _('Female')
         OTHER = 'O', _('Other')
-    gender = models.CharField(max_length=1, choices=Gender.choices, blank=True)
-    date_of_birth = models.DateField(null=True)
+    gender = models.CharField(max_length=1, choices=Gender.choices, blank=True, default='O')
+    date_of_birth = models.DateField(blank=True)
     email = models.EmailField(blank=True)
 
     # Address
@@ -90,13 +90,13 @@ class RegistrantDetail(models.Model):
     # Identity
     class Heritage(models.TextChoices):
         ABORIGINAL = 'A', _('Aboriginal')
-        TORRES_STRAIT = 'T', _('Torres Straint Islander')
-        BOTH = 'B', _('Aboriginal and Torres Straint Islander')
-        NONE = 'N', _('None')
-    aboriginal_torres_strait_islander = models.CharField(max_length=50, choices=Heritage.choices, blank=True)
+        TORRES_STRAIT = 'T', _('Torres Strait Islander')
+        BOTH = 'B', _('Aboriginal and Torres Strait Islander')
+        NEITHER = 'N', _('Neither')
+    aboriginal_torres_strait_islander = models.CharField(max_length=1, choices=Heritage.choices, blank=True)
     country_of_birth = models.CharField(max_length=50, blank=True)
     country_of_birth_other = models.CharField(max_length=50, blank=True)
-    speaks_english = models.BooleanField(null=True)
+    speaks_english = models.BooleanField(blank=True)
     other_language = models.CharField(max_length=50, blank=True)
 
     # Emergency
@@ -114,20 +114,20 @@ class RegistrantDetail(models.Model):
     transplant_types = models.CharField(max_length=100, blank=True)
     other_transplant_type = models.CharField(max_length=100, blank=True)
     awaiting_transplant_type = models.CharField(max_length=100, blank=True)
-    transplant_date = models.DateField(null=True)
+    transplant_date = models.DateField(blank=True)
     ongoing_care_hospital = models.CharField(max_length=100, blank=True)
-    has_pre_existing_conditions = models.BooleanField(null=True)
+    has_pre_existing_conditions = models.BooleanField(blank=True)
     pre_existing_conditions_details = models.TextField(blank=True)
     requires_wheelchair_assistance = models.BooleanField(blank=True)
-    has_dietary_requirements = models.BooleanField(null=True)
+    has_dietary_requirements = models.BooleanField(blank=True)
     dietary_requirements_details = models.TextField(blank=True)
 
     # Preferences
-    wants_to_volunteer = models.BooleanField(null=True)
-    wants_junior_activities_info = models.BooleanField(null=True)
+    wants_to_volunteer = models.BooleanField(blank=True)
+    wants_junior_activities_info = models.BooleanField(blank=True)
 
-    created_at = models.DateTimeField(auto_now=True)
-    updated_at = models.DateTimeField(auto_now_add=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return f"Registrant Detail #{self.id}"
