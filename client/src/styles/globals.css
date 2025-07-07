@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -12,8 +14,8 @@
     --primary: #AB0169;
     --secondary: #FFEED1;
     --accent: #F67423;
-
-    --font-sans: Helvetica, sans-serif;
+    --font-sans: 'DM Sans', Helvetica, sans-serif;
+	--radius: 0.5rem;
   }
   .dark {
     --text: #CCCCCC;
@@ -29,6 +31,6 @@
 
 @layer base {
   body {
-    @apply bg-background text-text;
+    @apply bg-background text-text font-sans;
   }
 }
