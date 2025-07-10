@@ -1,30 +1,36 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
   :root {
-    --text: #333333;
+    --text: #515154;
+    --subtle: #78777e;
+    --border: #aea9b1;
     --background: #ffffff;
+    --footer: #f4f4f4;
     --primary: #ab0169;
     --secondary: #ffeed1;
     --accent: #f67423;
-    --footer: #f4f4f4;
-
-    --font-sans: Helvetica, sans-serif;
+    --font-sans: "DM Sans", Helvetica, sans-serif;
+    --radius: 0.5rem;
   }
   .dark {
     --text: #cccccc;
-    --background: #000000;
-    --primary: #fe52bc;
-    --secondary: #2e1d00;
-    --accent: #dc5a09;
-    --footer: #0a0a0a;
+    --subtle: #b3b3b3;
+    --border: #404045;
+    --background: #1c1c1f;
+    --footer: #232326;
+    --primary: #ef5da0;
+    --secondary: #4e3a23;
+    --accent: #ff8c47;
   }
 }
 
 @layer base {
   body {
-    @apply bg-background text-text;
+    @apply bg-background font-sans text-text;
   }
 }
