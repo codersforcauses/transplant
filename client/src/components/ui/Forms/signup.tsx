@@ -1,6 +1,8 @@
-import { Button } from "../../button";
-import { GoogleIcon } from "../../google-icon";
-import { Separator } from "../../separator";
+import Link from "next/link";
+
+import { Button } from "../button";
+import { GoogleIcon } from "../google-icon";
+import { Separator } from "../separator";
 
 const SignUpForm = () => {
   return (
@@ -79,9 +81,9 @@ const SignUpForm = () => {
         </form>
         <p className="pt-5 text-sm">
           Already have an account?{" "}
-          <a className="text-primary underline" href="/login">
+          <Link className="text-primary underline" href="/login">
             Login
-          </a>
+          </Link>
         </p>
       </div>
     </div>
