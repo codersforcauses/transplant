@@ -25,6 +25,35 @@ const SignUpForm = () => {
         </div>
 
         <form className="flex w-full flex-col">
+          <div className="flex flex-col gap-4 pb-10 md:flex-row md:gap-x-8 md:pb-12">
+            <div className="flex flex-1 flex-col gap-2.5">
+              <label htmlFor="firstname" className="font-medium text-primary">
+                First Name
+              </label>
+              <input
+                id="firstname"
+                type="text"
+                name="firstname"
+                placeholder="Enter First Name"
+                className="bg-input h-12 rounded-md border border-border px-4 py-3 placeholder-border"
+                required
+              />
+            </div>
+            <div className="flex flex-1 flex-col gap-2.5">
+              <label htmlFor="lastname" className="font-medium text-primary">
+                Last Name
+              </label>
+              <input
+                id="lastname"
+                type="text"
+                name="lastname"
+                placeholder="Enter Last Name"
+                className="bg-input h-12 rounded-md border border-border px-4 py-3 placeholder-border"
+                required
+              />
+            </div>
+          </div>
+
           <div className="flex flex-col gap-2.5 pb-4 sm:pb-8">
             <label htmlFor="email" className="font-medium text-primary">
               Email

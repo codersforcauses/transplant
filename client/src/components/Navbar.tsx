@@ -35,7 +35,7 @@ function Navbar() {
               {isLoggedIn ? (
                 <Link href="#">LOGOUT</Link>
               ) : (
-                <Link href="#">LOGIN</Link>
+                <Link href="/login">LOGIN</Link>
               )}
               {isLoggedIn ? (
                 <Link
@@ -46,7 +46,7 @@ function Navbar() {
                 </Link>
               ) : (
                 <Link
-                  href="#"
+                  href="/signup"
                   className="flex text-nowrap rounded-full bg-white px-5 py-2 text-[var(--primary)]"
                 >
                   SIGN UP
@@ -140,7 +140,7 @@ function Navbar() {
             </Link>
           ) : (
             <Link
-              href="#"
+              href="/login"
               className="block h-11 bg-gradient-to-r from-[var(--accent)] to-[var(--primary)] py-3 text-center font-dm-sans font-medium uppercase text-white transition-opacity hover:py-2 hover:text-lg hover:opacity-85"
             >
               LOGIN
@@ -155,7 +155,7 @@ function Navbar() {
             </Link>
           ) : (
             <Link
-              href="#"
+              href="/signup"
               className="block h-11 bg-gradient-to-r from-[var(--accent)] to-[var(--primary)] py-3 text-center font-dm-sans font-medium uppercase text-white transition-opacity hover:py-2 hover:text-lg hover:opacity-85"
             >
               SIGNUP
