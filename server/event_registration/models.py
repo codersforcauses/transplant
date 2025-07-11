@@ -100,8 +100,8 @@ class RegistrantDetail(models.Model):
         FEMALE = 'F', _('Female')
         OTHER = 'O', _('Other')
     gender = models.CharField(max_length=1, choices=Gender.choices, blank=True, default='O')
-    date_of_birth = models.DateField(blank=True)
-    email = models.EmailField(blank=True)
+    date_of_birth = models.DateField(blank=True, null=True)
+    email = models.EmailField(blank=True, null=True)
 
     # Address
     address_line1 = models.CharField(max_length=100, blank=True)
@@ -111,7 +111,7 @@ class RegistrantDetail(models.Model):
     country = models.CharField(max_length=100, blank=True)
 
     # Travel
-    has_travel_insurance = models.BooleanField(blank=True)
+    has_travel_insurance = models.BooleanField(blank=True, default=False)
     repatriation_details = models.TextField(blank=True)
 
     # Phone
@@ -127,7 +127,7 @@ class RegistrantDetail(models.Model):
     aboriginal_torres_strait_islander = models.CharField(max_length=1, choices=Heritage.choices, blank=True)
     country_of_birth = models.CharField(max_length=50, blank=True)
     country_of_birth_other = models.CharField(max_length=50, blank=True)
-    speaks_english = models.BooleanField(blank=True)
+    speaks_english = models.BooleanField(blank=True, default=False)
     other_language = models.CharField(max_length=50, blank=True)
 
     # Emergency
@@ -145,17 +145,17 @@ class RegistrantDetail(models.Model):
     transplant_types = models.CharField(max_length=100, blank=True)
     other_transplant_type = models.CharField(max_length=100, blank=True)
     awaiting_transplant_type = models.CharField(max_length=100, blank=True)
-    transplant_date = models.DateField(blank=True)
+    transplant_date = models.DateField(blank=True, null=True)
     ongoing_care_hospital = models.CharField(max_length=100, blank=True)
-    has_pre_existing_conditions = models.BooleanField(blank=True)
+    has_pre_existing_conditions = models.BooleanField(blank=True, default=False)
     pre_existing_conditions_details = models.TextField(blank=True)
-    requires_wheelchair_assistance = models.BooleanField(blank=True)
-    has_dietary_requirements = models.BooleanField(blank=True)
+    requires_wheelchair_assistance = models.BooleanField(blank=True, default=False)
+    has_dietary_requirements = models.BooleanField(blank=True, default=False)
     dietary_requirements_details = models.TextField(blank=True)
 
     # Preferences
-    wants_to_volunteer = models.BooleanField(blank=True)
-    wants_junior_activities_info = models.BooleanField(blank=True)
+    wants_to_volunteer = models.BooleanField(blank=True, default=False)
+    wants_junior_activities_info = models.BooleanField(blank=True, default=False)
 
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
