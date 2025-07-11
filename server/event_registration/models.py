@@ -5,7 +5,6 @@ from django.utils.translation import gettext_lazy as _
 import uuid
 
 
-
 class UserManager(BaseUserManager):
     def create_user(self, email, password=None, **extra_fields):
         if not email:
@@ -101,7 +100,7 @@ class RegistrantDetail(models.Model):
         OTHER = 'O', _('Other')
     gender = models.CharField(max_length=1, choices=Gender.choices, blank=True, default='O')
     date_of_birth = models.DateField(blank=True, null=True)
-    email = models.EmailField(blank=True, null=True)
+    email = models.EmailField(blank=True)
 
     # Address
     address_line1 = models.CharField(max_length=100, blank=True)
