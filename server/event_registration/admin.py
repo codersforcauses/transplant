@@ -1,7 +1,6 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
-from .models import User
-from .models import Registration
+from .models import User, Registration, RegistrantDetail
 
 
 @admin.register(User)
@@ -28,3 +27,6 @@ class RegistrationAdmin(admin.ModelAdmin):
     list_display = ("id", "user", "status", "created_at")
     list_filter = ("status",)
     search_fields = ("user__email",)
+
+
+admin.site.register(RegistrantDetail)
