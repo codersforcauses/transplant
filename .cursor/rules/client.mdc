@@ -1,0 +1,6 @@
+---
+alwaysApply: true
+---
+Frontend
+Folder: client/ 
+Stack: JS, ReactJS, NextJS, Tailwind, Zustand

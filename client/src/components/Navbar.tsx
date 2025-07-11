@@ -2,9 +2,15 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 
+import { useAuth } from "@/context/auth-provider";
+import { useUser } from "@/hooks/useUser";
+
 function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState<boolean>(false);
-  const isLoggedIn: boolean = false; // -------Placeholder for authentication state-------
+
+  // TODO: to check: user name dispalys on Navbar
+  const { isLoggedIn, logout } = useAuth();
+  const { data: user_data } = useUser();
 
   const toggleMobileMenu = (): void => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
@@ -33,24 +39,25 @@ function Navbar() {
               <Link href="#">ABOUT</Link>
               <Link href="#">PARTICIPATE</Link>
               {isLoggedIn ? (
-                <Link href="#">LOGOUT</Link>
+                <>
+                  <span className="px-4">User: {user_data?.email || "-"}</span>
+                  <button
+                    onClick={logout}
+                    className="flex rounded-full bg-white px-5 py-2 text-[var(--primary)] hover:bg-gray-200"
+                  >
+                    LOGOUT
+                  </button>
+                </>
               ) : (
-                <Link href="#">LOGIN</Link>
-              )}
-              {isLoggedIn ? (
-                <Link
-                  href="#"
-                  className="flex rounded-full bg-white px-5 py-2 text-[var(--primary)]"
-                >
-                  Account
-                </Link>
-              ) : (
-                <Link
-                  href="#"
-                  className="flex text-nowrap rounded-full bg-white px-5 py-2 text-[var(--primary)]"
-                >
-                  SIGN UP
-                </Link>
+                <>
+                  <Link href="/login">LOGIN</Link>
+                  <Link
+                    href="/register"
+                    className="flex text-nowrap rounded-full bg-white px-5 py-2 text-[var(--primary)]"
+                  >
+                    SIGN UP
+                  </Link>
+                </>
               )}
             </div>
           </div>
@@ -132,34 +139,32 @@ function Navbar() {
             PARTICIPATE
           </Link>
           {isLoggedIn ? (
-            <Link
-              href="#"
-              className="block h-11 bg-gradient-to-r from-[var(--accent)] to-[var(--primary)] py-3 text-center font-dm-sans font-medium uppercase text-white transition-opacity hover:py-2 hover:text-lg hover:opacity-85"
-            >
-              LOGOUT
-            </Link>
+            <>
+              <span className="block h-11 bg-gradient-to-r from-[var(--accent)] to-[var(--primary)] py-3 text-center font-dm-sans font-medium uppercase text-white">
+                User: {user_data?.email || "-"}
+              </span>
+              <button
+                onClick={logout}
+                className="block h-11 w-full bg-gradient-to-r from-[var(--accent)] to-[var(--primary)] py-3 text-center font-dm-sans font-medium uppercase text-white hover:bg-gray-200"
+              >
+                LOGOUT
+              </button>
+            </>
           ) : (
-            <Link
-              href="#"
-              className="block h-11 bg-gradient-to-r from-[var(--accent)] to-[var(--primary)] py-3 text-center font-dm-sans font-medium uppercase text-white transition-opacity hover:py-2 hover:text-lg hover:opacity-85"
-            >
-              LOGIN
-            </Link>
-          )}
-          {isLoggedIn ? (
-            <Link
-              href="#"
-              className="block h-11 bg-gradient-to-r from-[var(--accent)] to-[var(--primary)] py-3 text-center font-dm-sans font-medium uppercase text-white transition-opacity hover:py-2 hover:text-lg hover:opacity-85"
-            >
-              ACCOUNT
-            </Link>
-          ) : (
-            <Link
-              href="#"
-              className="block h-11 bg-gradient-to-r from-[var(--accent)] to-[var(--primary)] py-3 text-center font-dm-sans font-medium uppercase text-white transition-opacity hover:py-2 hover:text-lg hover:opacity-85"
-            >
-              SIGNUP
-            </Link>
+            <>
+              <Link
+                href="/login"
+                className="block h-11 bg-gradient-to-r from-[var(--accent)] to-[var(--primary)] py-3 text-center font-dm-sans font-medium uppercase text-white transition-opacity hover:py-2 hover:text-lg hover:opacity-85"
+              >
+                LOGIN
+              </Link>
+              <Link
+                href="/register"
+                className="block h-11 bg-gradient-to-r from-[var(--accent)] to-[var(--primary)] py-3 text-center font-dm-sans font-medium uppercase text-white transition-opacity hover:py-2 hover:text-lg hover:opacity-85"
+              >
+                SIGNUP
+              </Link>
+            </>
           )}
         </div>
       </div>

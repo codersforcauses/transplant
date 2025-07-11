@@ -1,0 +1,6 @@
+---
+alwaysApply: true
+---
+Backend.
+Folder: server/
+Stack: Django.

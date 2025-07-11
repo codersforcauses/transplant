@@ -3,6 +3,7 @@ import { useState } from "react";
 
 import Navbar from "@/components/Navbar";
 import { usePings } from "@/hooks/pings";
+import { useUser } from "@/hooks/useUser";
 import { cn } from "@/lib/utils";
 
 import { Button } from "../components/ui/button";
@@ -17,6 +18,9 @@ export default function Home() {
   const { data, isLoading } = usePings({
     enabled: clicked,
   });
+  // get user data
+  const { data: user_data } = useUser();
+  console.log("user_data = ", user_data);
 
   return (
     <>

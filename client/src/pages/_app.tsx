@@ -4,6 +4,10 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import type { AppProps } from "next/app";
 import { DM_Sans } from "next/font/google";
+import { useRouter } from "next/router";
+import { useEffect } from "react";
+
+import { AuthProvider, useAuth } from "@/context/auth-provider";
 
 const dmSans = DM_Sans({
   subsets: ["latin"],
@@ -12,13 +16,34 @@ const dmSans = DM_Sans({
 
 const queryClient = new QueryClient();
 
-export default function App({ Component, pageProps }: AppProps) {
+function AuthRedirect({ Component, pageProps, router }: AppProps) {
+  const { isLoggedIn } = useAuth();
+  // redirect logic
+  useEffect(() => {
+    const publicPages = ["/login", "/register"];
+    if (!isLoggedIn && !publicPages.includes(router.pathname)) {
+      // TODO: uncomment to redirect to main in not logged in
+      // router.replace("/login");
+    } else if (isLoggedIn && publicPages.includes(router.pathname)) {
+      router.replace("/");
+    }
+  }, [isLoggedIn, router.pathname]);
+  return <Component {...pageProps} />;
+}
+
+export default function App({ Component, pageProps, router }: AppProps) {
   return (
     <QueryClientProvider client={queryClient}>
-      <div className={dmSans.variable}>
-        <ReactQueryDevtools initialIsOpen={false} />
-        <Component {...pageProps} />
-      </div>
+      <AuthProvider>
+        <div className={dmSans.variable}>
+          <ReactQueryDevtools initialIsOpen={false} />
+          <AuthRedirect
+            Component={Component}
+            pageProps={pageProps}
+            router={router}
+          />
+        </div>
+      </AuthProvider>
     </QueryClientProvider>
   );
 }

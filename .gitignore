@@ -292,3 +292,4 @@ dist
 .DS_Store
 
 opt/
+.cursor

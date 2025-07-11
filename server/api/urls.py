@@ -21,12 +21,12 @@ from rest_framework_simplejwt.views import (
     TokenObtainPairView,
     TokenRefreshView,
 )
+from event_registration.views import EmailTokenObtainPairView
 
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("api/healthcheck/", include(("api.healthcheck.urls"))),
-    path("api/token/", TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path("api/token/", EmailTokenObtainPairView.as_view(), name='token_obtain_pair'),
     path("api/token/refresh/", TokenRefreshView.as_view(), name='token_refresh'),
-    # TODO -mock reg: 
-    path("api/mockreg/", include(("api.mockreg.urls"))),
+    path("api/users/", include(("event_registration.urls"))),
 ]
