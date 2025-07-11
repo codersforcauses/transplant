@@ -7,7 +7,7 @@ from .models import User, Registration, RegistrantDetail
 class UserAdmin(BaseUserAdmin):
     ordering = ["email"]
     list_display = ["email", "first_name", "middle_name", "last_name", "is_staff", "is_active", "last_login"]
-    search_fields = ["email"]
+    search_fields = ["email", "first_name", "last_name"]
     fieldsets = (
         (None, {"fields": ("email", "password")}),
         ("Personal info", {"fields": ("first_name", "middle_name", "last_name")}),
