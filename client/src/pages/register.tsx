@@ -22,7 +22,7 @@ const Register: React.FC = () => {
       {
         onSuccess: () => {
           setMessage("Registration successful! Redirecting to login...");
-          setTimeout(() => router.push("/login"), 2000);
+          setTimeout(() => router.push("/loginForAuthCheck"), 2000);
         },
         onError: (error: any) => {
           setMessage(
@@ -121,7 +121,10 @@ const Register: React.FC = () => {
       )}
       <div className="mt-4 text-center">
         <span>Already have an account? </span>
-        <Link href="/login" className="text-blue-600 hover:underline">
+        <Link
+          href="/loginForAuthCheck"
+          className="text-blue-600 hover:underline"
+        >
           Login here
         </Link>
       </div>

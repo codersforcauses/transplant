@@ -50,7 +50,7 @@ function Navbar() {
                 </>
               ) : (
                 <>
-                  <Link href="/login">LOGIN</Link>
+                  <Link href="/loginForAuthCheck">LOGIN</Link>
                   <Link
                     href="/register"
                     className="flex text-nowrap rounded-full bg-white px-5 py-2 text-[var(--primary)]"
@@ -153,7 +153,7 @@ function Navbar() {
           ) : (
             <>
               <Link
-                href="/login"
+                href="/loginForAuthCheck"
                 className="block h-11 bg-gradient-to-r from-[var(--accent)] to-[var(--primary)] py-3 text-center font-dm-sans font-medium uppercase text-white transition-opacity hover:py-2 hover:text-lg hover:opacity-85"
               >
                 LOGIN

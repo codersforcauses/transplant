@@ -20,10 +20,10 @@ function AuthRedirect({ Component, pageProps, router }: AppProps) {
   const { isLoggedIn } = useAuth();
   // redirect logic
   useEffect(() => {
-    const publicPages = ["/login", "/register"];
+    const publicPages = ["/loginForAuthCheck", "/register"];
     if (!isLoggedIn && !publicPages.includes(router.pathname)) {
       // TODO: uncomment to redirect to main in not logged in
-      // router.replace("/login");
+      // router.replace("/loginForAuthCheck");
     } else if (isLoggedIn && publicPages.includes(router.pathname)) {
       router.replace("/");
     }
