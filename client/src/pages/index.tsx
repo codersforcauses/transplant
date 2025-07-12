@@ -1,9 +1,8 @@
 import { Inter as FontSans } from "next/font/google";
 import { useState } from "react";
 
-
-import LandingPageBody from "@/components/landing-page-body";
 import Footer from "@/components/Footer";
+import LandingPageBody from "@/components/landing-page-body";
 import Navbar from "@/components/Navbar";
 import { usePings } from "@/hooks/pings";
 import { cn } from "@/lib/utils";
