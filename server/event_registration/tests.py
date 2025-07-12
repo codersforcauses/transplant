@@ -18,12 +18,16 @@ class UserRegistrationTest(TestCase):
         email="new@example.com",
         password1="Another decent password...",
         password2="Another decent password...",
+        first_name="Jane",
+        last_name="Doe",
         expected_status=400
     ):
         data = {
             "email": email,
             "password1": password1,
             "password2": password2,
+            "first_name": first_name,
+            "last_name": last_name,
         }
         response = self.client.post(self.url, data)
         self.assertEqual(response.status_code, expected_status)
@@ -45,10 +49,10 @@ class UserRegistrationTest(TestCase):
         self.assertEqual(response.status_code, 400)
 
     def test_email_collision(self):
-        self.check_data(email="existing@example.com")
+        self.check_data(email="existing@example.com", expected_status=409)
 
     def test_capitalised_collision(self):
-        self.check_data(email="existing@EXAMPLE.com")
+        self.check_data(email="existing@EXAMPLE.com", expected_status=409)
         self.assertFalse(User.objects.filter(email__exact='existing@EXAMPLE.com').exists())
         self.assertEqual(len(User.objects.all()), 1)
         self.assertFalse(User.objects.get(email="existing@example.com").check_password("Another decent password..."))
@@ -56,3 +60,6 @@ class UserRegistrationTest(TestCase):
     def test_invalid_email(self):
         self.check_data(email="test.com")
         self.assertFalse(User.objects.filter(email__iexact='test.com').exists())
+
+    def test_name_overflow(self):
+        self.check_data(first_name="A"*5000)
