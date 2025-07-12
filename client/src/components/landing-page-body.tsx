@@ -1,16 +1,11 @@
 import Link from "next/link";
 import React from "react";
 
-import Navbar from "@/components/Navbar";
+import { Button } from "./ui/button";
 
-import { Button } from "../components/ui/button";
-
-const LandingPage: React.FC = () => {
+const LandingPageBody: React.FC = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-orange-400 via-pink-500 to-purple-600">
-      {/* Navbar */}
-      <Navbar />
-
+    <div className="min-h-screen bg-gray-900">
       {/* Hero Section */}
       <div className="relative min-h-screen">
         {/* Background Image */}
@@ -27,7 +22,7 @@ const LandingPage: React.FC = () => {
 
         {/* Content */}
         <div className="relative z-10 flex min-h-screen items-center justify-start px-6 sm:px-10 lg:px-20">
-          <div className="max-w-2xl text-white">
+          <div className="max-w-2xl font-sans text-white">
             {/* Main Heading */}
             <h1 className="mb-6 text-4xl font-bold leading-tight sm:text-5xl lg:text-6xl">
               Register for the 2026
@@ -122,4 +117,4 @@ const LandingPage: React.FC = () => {
   );
 };
 
-export default LandingPage;
+export default LandingPageBody;

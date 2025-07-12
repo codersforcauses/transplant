@@ -1,10 +1,10 @@
 import { Inter as FontSans } from "next/font/google";
 import { useState } from "react";
 
+import LandingPageBody from "@/components/landing-page-body";
 import Navbar from "@/components/Navbar";
 import { usePings } from "@/hooks/pings";
 import { cn } from "@/lib/utils";
-import LandingPage from "@/pages/LandingPage";
 
 import { Button } from "../components/ui/button";
 
@@ -22,6 +22,7 @@ export default function Home() {
   return (
     <>
       <Navbar />
+      <LandingPageBody />
       <main
         className={cn(
           "flex min-h-screen flex-col items-center gap-4 p-24 font-sans",
