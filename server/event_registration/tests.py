@@ -48,8 +48,9 @@ class UserRegistrationTest(TestCase):
         self.check_data(email="existing@example.com")
 
     def test_capitalised_collision(self):
-        self.check_data(email="existing@EXAMPLE.com", expected_status=200)
-        self.assertFalse(User.objects.filter(email__exact='existing@EXISTING.com').exists())
+        self.check_data(email="existing@EXAMPLE.com")
+        self.assertFalse(User.objects.filter(email__exact='existing@EXAMPLE.com').exists())
+        self.assertEqual(len(User.objects.all()), 1)
         self.assertFalse(User.objects.get(email="existing@example.com").check_password("Another decent password..."))
 
     def test_invalid_email(self):
