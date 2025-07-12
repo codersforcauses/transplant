@@ -1,3 +1,5 @@
+import { Country, State } from "country-state-city";
+import { Mail, Phone, Smartphone, User } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
 
@@ -5,7 +7,24 @@ import { Button } from "../button";
 import { GoogleIcon } from "../google-icon";
 import { Separator } from "../separator";
 
+const countries = Country.getAllCountries().sort((a, b) => {
+  if (a.name === "Australia" && b.name !== "Australia") return -1;
+  if (b.name === "Australia" && a.name !== "Australia") return 1;
+  return a.name.localeCompare(b.name);
+});
+
 const ParticipantForm = () => {
+  const [selectedCountry, setSelectedCountry] = useState("");
+  const [selectedRepresentingCountry, setSelectedRepresentingCountry] =
+    useState("");
+  const [selectedPostalCountry, setSelectedPostalCountry] = useState("");
+
+  const getStatesForCountry = (countryCode: string) => {
+    return State.getStatesOfCountry(countryCode).sort((a, b) =>
+      a.name.localeCompare(b.name),
+    );
+  };
+
   return (
     <div className="mx-auto max-w-4xl space-y-8 p-6">
       <div className="space-y-6">
@@ -45,7 +64,7 @@ const ParticipantForm = () => {
           <div className="space-y-2">
             <label className="block font-medium text-primary">Gender</label>
             <select
-              className="w-full rounded border border-border p-2"
+              className="w-full rounded border border-border bg-background p-2"
               name="gender"
               autoComplete="sex"
             >
@@ -60,7 +79,7 @@ const ParticipantForm = () => {
               Date of Birth
             </label>
             <input
-              className="w-full rounded border border-border p-2 font-medium text-primary"
+              className="w-full rounded border border-border p-2"
               placeholder="dd/mm/yyyy"
               name="dateOfBirth"
               type="date"
@@ -75,39 +94,54 @@ const ParticipantForm = () => {
             <label className="block font-medium text-primary">
               Email Address
             </label>
-            <input
-              className="w-full rounded border border-border p-2"
-              id="email"
-              type="email"
-              name="email"
-              placeholder="Your Email Address"
-              autoComplete="email"
-            ></input>
+            <div className="relative">
+              <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+                <Mail className="h-5 w-5 text-gray-400" />
+              </div>
+              <input
+                className="w-full rounded border border-border p-2 pl-10"
+                id="email"
+                type="email"
+                name="email"
+                placeholder="Your Email Address"
+                autoComplete="email"
+              ></input>
+            </div>
           </div>
           <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
             <div className="space-y-2">
               <label className="block font-medium text-primary">
                 Mobile Phone
               </label>
-              <input
-                className="w-full rounded border border-border p-2"
-                placeholder="Your Mobile Phone"
-                name="mobilePhone"
-                type="tel"
-                autoComplete="mobile tel"
-              ></input>
+              <div className="relative">
+                <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+                  <Smartphone className="h-5 w-5 text-gray-400" />
+                </div>
+                <input
+                  className="w-full rounded border border-border p-2 pl-10"
+                  placeholder="Your Mobile Phone"
+                  name="mobilePhone"
+                  type="tel"
+                  autoComplete="mobile tel"
+                ></input>
+              </div>
             </div>
             <div className="space-y-2">
               <label className="block font-medium text-primary">
                 Day Phone
               </label>
-              <input
-                className="w-full rounded border border-border p-2"
-                placeholder="Your Day Phone"
-                name="dayPhone"
-                type="tel"
-                autoComplete="work tel"
-              ></input>
+              <div className="relative">
+                <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+                  <Phone className="h-5 w-5 text-gray-400" />
+                </div>
+                <input
+                  className="w-full rounded border border-border p-2 pl-10"
+                  placeholder="Your Day Phone"
+                  name="dayPhone"
+                  type="tel"
+                  autoComplete="work tel"
+                ></input>
+              </div>
             </div>
           </div>
 
@@ -135,12 +169,42 @@ const ParticipantForm = () => {
             </div>
             <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
               <div className="space-y-2">
+                <label className="block font-medium text-primary">
+                  Country
+                </label>
+                <select
+                  className="w-full rounded border border-border bg-background p-2"
+                  name="country"
+                  autoComplete="country-name"
+                  value={selectedPostalCountry}
+                  onChange={(e) => setSelectedPostalCountry(e.target.value)}
+                >
+                  <option value="">Select a country</option>
+                  {countries.map((country) => (
+                    <option key={country.isoCode} value={country.isoCode}>
+                      {country.name}
+                    </option>
+                  ))}
+                </select>
+              </div>
+              <div className="space-y-2">
                 <label className="block font-medium text-primary">State</label>
-                <input
-                  className="w-full rounded border border-border p-2"
+                <select
+                  className="w-full rounded border border-border bg-background p-2"
                   name="state"
                   autoComplete="address-level1"
-                ></input>
+                  disabled={!selectedPostalCountry}
+                >
+                  <option value="">
+                    {selectedPostalCountry ? "Select a state/territory" : ""}
+                  </option>
+                  {selectedPostalCountry &&
+                    getStatesForCountry(selectedPostalCountry).map((state) => (
+                      <option key={state.isoCode} value={state.name}>
+                        {state.name}
+                      </option>
+                    ))}
+                </select>
               </div>
               <div className="space-y-2">
                 <label className="block font-medium text-primary">
@@ -150,16 +214,6 @@ const ParticipantForm = () => {
                   className="w-full rounded border border-border p-2"
                   name="postcode"
                   autoComplete="postal-code"
-                ></input>
-              </div>
-              <div className="space-y-2">
-                <label className="block font-medium text-primary">
-                  Country
-                </label>
-                <input
-                  className="w-full rounded border border-border p-2"
-                  name="country"
-                  autoComplete="country-name"
                 ></input>
               </div>
             </div>
@@ -183,12 +237,17 @@ const ParticipantForm = () => {
               <label className="block font-medium text-primary">
                 Phone Number
               </label>
-              <input
-                className="w-full rounded border border-border p-2"
-                name="emergencyContactPhone"
-                type="tel"
-                autoComplete="tel"
-              ></input>
+              <div className="relative">
+                <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+                  <Smartphone className="h-5 w-5 text-gray-400" />
+                </div>
+                <input
+                  className="w-full rounded border border-border p-2 pl-10"
+                  name="emergencyContactPhone"
+                  type="tel"
+                  autoComplete="tel"
+                ></input>
+              </div>
             </div>
           </div>
 
@@ -210,12 +269,17 @@ const ParticipantForm = () => {
               <label className="block font-medium text-primary">
                 Phone Number (optional)
               </label>
-              <input
-                className="w-full rounded border border-border p-2"
-                name="secondaryEmergencyContactPhone"
-                type="tel"
-                autoComplete="tel"
-              ></input>
+              <div className="relative">
+                <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+                  <Smartphone className="h-5 w-5 text-gray-400" />
+                </div>
+                <input
+                  className="w-full rounded border border-border p-2 pl-10"
+                  name="secondaryEmergencyContactPhone"
+                  type="tel"
+                  autoComplete="tel"
+                ></input>
+              </div>
             </div>
           </div>
         </div>
@@ -229,13 +293,20 @@ const ParticipantForm = () => {
             <label className="block font-medium text-primary">
               In which country were you born?
             </label>
-            <input
-              className="w-full rounded border border-border p-2"
+            <select
+              className="w-full rounded border border-border bg-background p-2"
               name="birthCountry"
               autoComplete="country-name"
+              value={selectedCountry}
+              onChange={(e) => setSelectedCountry(e.target.value)}
             >
-              {/**need to import somethign here probably */}
-            </input>
+              <option value="">Select a country</option>
+              {countries.map((country) => (
+                <option key={country.isoCode} value={country.isoCode}>
+                  {country.name}
+                </option>
+              ))}
+            </select>
           </div>
           <div className="space-y-2">
             <label className="block font-medium text-primary">
@@ -251,10 +322,21 @@ const ParticipantForm = () => {
             <label className="block font-medium text-primary">
               Are you of Aboriginal or Torres Strait Islander origin?
             </label>
-            <input
-              className="w-full rounded border border-border p-2"
+            <select
+              className="w-full rounded border border-border bg-background p-2"
               name="indigenousStatus"
-            ></input>
+            >
+              <option value="">Please select</option>
+              <option value="no">No</option>
+              <option value="aboriginal">Yes, Aboriginal</option>
+              <option value="torres-strait-islander">
+                Yes, Torres Strait Islander
+              </option>
+              <option value="both">
+                Yes, both Aboriginal and Torres Strait Islander
+              </option>
+              <option value="prefer-not-to-say">Prefer not to say</option>
+            </select>
           </div>
         </div>
       </div>
@@ -300,14 +382,17 @@ const ParticipantForm = () => {
               Registration category:
             </label>
             <select
-              className="w-full rounded border border-border p-2"
+              className="w-full rounded border border-border bg-background p-2"
               name="registrationCategory"
             >
               <option value="">Please select</option>
-              <option value="competitor">Competitor</option>
-              <option value="non-competitor">Non-competitor</option>
-              <option value="junior">Junior (under 18)</option>
-              <option value="family">Family member</option>
+              <option value="adult">Adult (18+) - $195</option>
+              <option value="child">Child (0-3) - Free</option>
+              <option value="junior-4-5">Junior (4-5) - $15</option>
+              <option value="junior-6-8">Junior (6-8) - $15</option>
+              <option value="junior-9-11">Junior (9-11) - $25</option>
+              <option value="junior-12-14">Junior (12-14) - $50</option>
+              <option value="junior-15-17">Junior (15-17) - $75</option>
             </select>
           </div>
         </div>
@@ -318,19 +403,41 @@ const ParticipantForm = () => {
             <label className="block font-medium text-primary">
               Which country will you represent in the games?
             </label>
-            <input
-              className="w-full rounded border border-border p-2"
+            <select
+              className="w-full rounded border border-border bg-background p-2"
               name="representingCountry"
-            ></input>
+              value={selectedRepresentingCountry}
+              onChange={(e) => setSelectedRepresentingCountry(e.target.value)}
+            >
+              <option value="">Select a country</option>
+              {countries.map((country) => (
+                <option key={country.isoCode} value={country.isoCode}>
+                  {country.name}
+                </option>
+              ))}
+            </select>
           </div>
           <div className="space-y-2">
             <label className="block font-medium text-primary">
               Which state/territory will you represent?
             </label>
-            <input
-              className="w-full rounded border border-border p-2"
+            <select
+              className="w-full rounded border border-border bg-background p-2"
               name="representingState"
-            ></input>
+              disabled={!selectedRepresentingCountry}
+            >
+              <option value="">
+                {selectedRepresentingCountry ? "Select a state/territory" : ""}
+              </option>
+              {selectedRepresentingCountry &&
+                getStatesForCountry(selectedRepresentingCountry).map(
+                  (state) => (
+                    <option key={state.isoCode} value={state.isoCode}>
+                      {state.name}
+                    </option>
+                  ),
+                )}
+            </select>
           </div>
         </div>
 
