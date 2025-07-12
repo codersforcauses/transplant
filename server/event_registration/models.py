@@ -30,7 +30,6 @@ class User(AbstractBaseUser, PermissionsMixin):
     updated_at = models.DateTimeField(auto_now=True)
 
     first_name = models.CharField(max_length=100, blank=True)
-    middle_name = models.CharField(max_length=100, blank=True)
     last_name = models.CharField(max_length=100, blank=True)
 
     USERNAME_FIELD = "email"
@@ -82,9 +81,8 @@ class RegistrantDetail(models.Model):
     registration = models.OneToOneField(Registration, on_delete=models.CASCADE, related_name='registrant_details')
     is_user = models.BooleanField(default=False)
 
-    # Peronsal data
+    # Personal data
     first_name = models.CharField(max_length=100, blank=True)
-    middle_name = models.CharField(max_length=100, blank=True)
     last_name = models.CharField(max_length=100, blank=True)
 
     class Gender(models.TextChoices):
