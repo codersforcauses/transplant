@@ -149,59 +149,58 @@ function Footer() {
             sea, and community and pay our respect to their elders past and
             present.
           </p>
-          <p>
-            <div className="mt-2 flex flex-col items-center justify-between gap-4 md:flex-row">
-              {/* Left: Copyright + Links */}
-              <div className="text-sm text-gray-600">
-                © 2026 Australian Transplant Games. All Rights Reserved
-                <span className="mx-2 text-pink-500">|</span>
-                <Link
-                  href="#"
-                  className="transform text-pink-500 transition duration-200 hover:scale-105 hover:text-pink-700"
-                >
-                  Privacy Statement
-                </Link>
-                <span className="mx-2 text-pink-500">|</span>
-                <Link
-                  href="#"
-                  className="transform text-pink-500 transition duration-200 hover:scale-105 hover:text-pink-700"
-                >
-                  Medical Website by Wolf IQ
-                </Link>
-              </div>
 
-              {/* Right: social icons */}
-              <div className="flex gap-4">
-                <Link
-                  href="https://www.instagram.com/transplantaus/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="transform transition duration-200 hover:scale-105"
-                >
-                  <Image
-                    src="/insta.png"
-                    alt="Instagram"
-                    width={24}
-                    height={24}
-                  />
-                </Link>
-
-                <Link
-                  href="https://www.facebook.com/transplantaustralia"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="transform transition duration-200 hover:scale-105"
-                >
-                  <Image
-                    src="/facebook.png"
-                    alt="Facebook"
-                    width={24}
-                    height={24}
-                  />
-                </Link>
-              </div>
+          <div className="mt-2 flex flex-col items-center justify-between gap-4 md:flex-row">
+            {/* Left: Copyright + Links */}
+            <div className="text-sm text-gray-600">
+              © 2026 Australian Transplant Games. All Rights Reserved
+              <span className="mx-2 text-pink-500">|</span>
+              <Link
+                href="#"
+                className="transform text-pink-500 transition duration-200 hover:scale-105 hover:text-pink-700"
+              >
+                Privacy Statement
+              </Link>
+              <span className="mx-2 text-pink-500">|</span>
+              <Link
+                href="#"
+                className="transform text-pink-500 transition duration-200 hover:scale-105 hover:text-pink-700"
+              >
+                Medical Website by Wolf IQ
+              </Link>
             </div>
-          </p>
+
+            {/* Right: social icons */}
+            <div className="flex gap-4">
+              <Link
+                href="https://www.instagram.com/transplantaus/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="transform transition duration-200 hover:scale-105"
+              >
+                <Image
+                  src="/insta.png"
+                  alt="Instagram"
+                  width={24}
+                  height={24}
+                />
+              </Link>
+
+              <Link
+                href="https://www.facebook.com/transplantaustralia"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="transform transition duration-200 hover:scale-105"
+              >
+                <Image
+                  src="/facebook.png"
+                  alt="Facebook"
+                  width={24}
+                  height={24}
+                />
+              </Link>
+            </div>
+          </div>
         </div>
       </div>
     </footer>
