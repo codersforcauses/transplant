@@ -1,10 +1,9 @@
 from django.urls import path
 from event_registration import views
-from .views import RegistrantDetail
+from .views import RegistrantDetailRetrieveUpdate
 
 
 urlpatterns = [
-    path('registrations/', views.Registration.as_view(), name='registration-list-create'),
-    path('registrant-details/', views.RegistrantDetail.as_view(), name='registrant-detail'),
-    path('registrant-details/<int:pk>/', RegistrantDetail.as_view(), name='registrant-detail-detail'),
+    path('event_registration/registrations/', views.RegistrationListCreate.as_view(), name='registration-list-create'),
+    path('event_registration/registrant-details/<int:pk>/', RegistrantDetailRetrieveUpdate.as_view(), name='registrant-detail-retrieve-update'),
 ]
