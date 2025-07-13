@@ -1,11 +1,10 @@
 from django.urls import path
-from .views import (
-    RegistrantDetailListCreateView,
-    RegistrantDetailDetailView,
-)
+from event_registration import views
+from .views import RegistrantDetail
 
 
 urlpatterns = [
-    path('registrant-details/', RegistrantDetailListCreateView.as_view(), name='registrant-details-list-create'),
-    path('registrant-details/<int:pk>/', RegistrantDetailDetailView.as_view(), name='registrant-detail-detail'),
+    path('registrations/', views.Registration.as_view(), name='registration-list-create'),
+    path('registrant-details/', views.RegistrantDetail.as_view(), name='registrant-detail'),
+    path('registrant-details/<int:pk>/', RegistrantDetail.as_view(), name='registrant-detail-detail'),
 ]
