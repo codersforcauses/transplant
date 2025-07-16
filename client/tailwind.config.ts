@@ -25,6 +25,8 @@ const config = {
       },
       colors: {
         text: "var(--text)",
+        subtle: "var(--subtle)",
+        border: "var(--border)",
         background: "var(--background)",
         primary: "var(--primary)",
         secondary: "var(--secondary)",
