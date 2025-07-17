@@ -6,7 +6,7 @@ test_user1.set_password('test@test.com')  # password = email
 test_user1.first_name = 'Test'
 test_user1.last_name = 'User1'
 test_user1.save()
-print('User 1 created:', test_user1.email)
+print('User 1 created:', test_user1.email, 'ID:', test_user1.id)
 
 # Create user 2
 test_user2, created2 = User.objects.get_or_create(email='test2@test.com')  # type: ignore[attr-defined]
@@ -14,7 +14,7 @@ test_user2.set_password('test2@test.com')  # password = email
 test_user2.first_name = 'Test2'
 test_user2.last_name = 'User2'
 test_user2.save()
-print('User 2 created:', test_user2.email)
+print('User 2 created:', test_user2.email, 'ID:', test_user2.id)
 
 # For each user, create two registrations and registrant details
 def create_regs(user, reg_names):
