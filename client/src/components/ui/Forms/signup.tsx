@@ -2,6 +2,7 @@ import Link from "next/link";
 
 import { Button } from "../button";
 import { GoogleIcon } from "../google-icon";
+import { Input } from "../input";
 import { Separator } from "../separator";
 
 const SignUpForm = () => {
@@ -26,78 +27,57 @@ const SignUpForm = () => {
 
         <form className="flex w-full flex-col">
           <div className="flex flex-col gap-4 pb-10 md:flex-row md:gap-x-8 md:pb-12">
-            <div className="flex flex-1 flex-col gap-2.5">
-              <label htmlFor="firstname" className="font-medium text-primary">
-                First Name
-              </label>
-              <input
-                id="firstname"
-                type="text"
-                name="firstname"
-                placeholder="Enter First Name"
-                className="bg-input h-12 rounded-md border border-border px-4 py-3 placeholder-border"
-                required
-              />
-            </div>
-            <div className="flex flex-1 flex-col gap-2.5">
-              <label htmlFor="lastname" className="font-medium text-primary">
-                Last Name
-              </label>
-              <input
-                id="lastname"
-                type="text"
-                name="lastname"
-                placeholder="Enter Last Name"
-                className="bg-input h-12 rounded-md border border-border px-4 py-3 placeholder-border"
-                required
-              />
-            </div>
+            <Input
+              id="firstname"
+              type="text"
+              name="firstname"
+              label="First Name"
+              placeholder="Enter First Name"
+              containerClassName="flex-1"
+              required
+            />
+            <Input
+              id="lastname"
+              type="text"
+              name="lastname"
+              label="Last Name"
+              placeholder="Enter Last Name"
+              containerClassName="flex-1"
+              required
+            />
           </div>
 
-          <div className="flex flex-col gap-2.5 pb-4 sm:pb-8">
-            <label htmlFor="email" className="font-medium text-primary">
-              Email
-            </label>
-            <input
+          <div className="pb-4 sm:pb-8">
+            <Input
               id="email"
               type="email"
               name="email"
+              label="Email"
               placeholder="Enter Email"
-              className="bg-input h-12 rounded-md border border-border px-4 py-3 text-base placeholder-border"
+              className="text-base"
               required
             />
           </div>
 
           <div className="flex flex-col gap-4 pb-10 md:flex-row md:gap-x-8 md:pb-12">
-            <div className="flex flex-1 flex-col gap-2.5">
-              <label htmlFor="password" className="font-medium text-primary">
-                Password
-              </label>
-              <input
-                id="password"
-                type="password"
-                name="password"
-                placeholder="Enter Password"
-                className="bg-input h-12 rounded-md border border-border px-4 py-3 placeholder-border"
-                required
-              />
-            </div>
-            <div className="flex flex-1 flex-col gap-2.5">
-              <label
-                htmlFor="confirmPassword"
-                className="font-medium text-primary"
-              >
-                Confirm Password
-              </label>
-              <input
-                id="confirmPassword"
-                type="password"
-                name="confirmPassword"
-                placeholder="Confirm Password"
-                className="bg-input h-12 rounded-md border border-border px-4 py-3 placeholder-border"
-                required
-              />
-            </div>
+            <Input
+              id="password"
+              type="password"
+              name="password"
+              label="Password"
+              placeholder="Enter Password"
+              containerClassName="flex-1"
+              required
+            />
+            <Input
+              id="confirmPassword"
+              type="password"
+              name="confirmPassword"
+              label="Confirm Password"
+              placeholder="Confirm Password"
+              containerClassName="flex-1"
+              required
+            />
           </div>
 
           <Button
