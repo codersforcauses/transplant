@@ -23,7 +23,9 @@ export default function App({ Component, pageProps }: AppProps) {
         <div className={dmSans.variable}>
           <Navbar />
           <ReactQueryDevtools initialIsOpen={false} />
-          <Component {...pageProps} />
+          <main className="pt-32">
+            <Component {...pageProps} />
+          </main>
           <Footer />
         </div>
       </AuthProvider>
