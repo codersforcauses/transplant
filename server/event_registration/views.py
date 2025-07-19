@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from rest_framework.decorators import api_view, authentication_classes, permission_classes
 import json
 
+
 @api_view(["POST"])
 @authentication_classes([])
 @permission_classes([])
