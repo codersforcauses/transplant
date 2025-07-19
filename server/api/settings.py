@@ -38,7 +38,7 @@ ALLOWED_HOSTS = (
     else []
 )
 
-CSRF_TRUSTED_ORIGINS = ["http://localhost:3000"]
+CSRF_TRUSTED_ORIGINS = [FRONTEND_URL]
 # Application definition
 
 INSTALLED_APPS = [
