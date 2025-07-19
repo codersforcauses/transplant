@@ -42,7 +42,7 @@ const SignUpForm = () => {
 
   const { mutate: registerHook, isPending } = useRegister({
     onSuccess: () => {
-      alert("yippeee!! Sign up was successful.");
+      alert("Sign up was successful.");
     },
     onError: () => {
       alert("An error occured. Sign Up was unsuccessful.");
@@ -81,10 +81,6 @@ const SignUpForm = () => {
               error={errors.firstname?.message}
               {...register("firstname", {
                 required: "First name is required",
-                minLength: {
-                  value: 2,
-                  message: "First name must be at least 2 characters",
-                },
               })}
             />
             <Input
@@ -96,10 +92,6 @@ const SignUpForm = () => {
               error={errors.lastname?.message}
               {...register("lastname", {
                 required: "Last name is required",
-                minLength: {
-                  value: 2,
-                  message: "Last name must be at least 2 characters",
-                },
               })}
             />
           </div>
@@ -114,10 +106,6 @@ const SignUpForm = () => {
               error={errors.email?.message}
               {...register("email", {
                 required: "Email is required",
-                pattern: {
-                  value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                  message: "Please enter a valid email address",
-                },
               })}
             />
           </div>
@@ -135,11 +123,6 @@ const SignUpForm = () => {
                 minLength: {
                   value: 8,
                   message: "Password must be at least 8 characters",
-                },
-                pattern: {
-                  value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)/,
-                  message:
-                    "Password must contain at least one uppercase letter, one lowercase letter, and one number",
                 },
               })}
             />
@@ -167,7 +150,6 @@ const SignUpForm = () => {
             {isSubmitting ? "Signing Up..." : "Sign Up"}
           </Button>
         </form>
-
         <p className="pt-5 text-sm">
           Already have an account?{" "}
           <Link className="text-primary underline" href="/login">
