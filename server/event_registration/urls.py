@@ -11,6 +11,6 @@ urlpatterns = [
     path("users/register/", register_user, name="register_user"),
     path("token/", TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path("token/refresh/", TokenRefreshView.as_view(), name='token_refresh'),
-    path('event_registration/registrations/', views.RegistrationListCreate.as_view(), name='registration-list-create'),
-    path('event_registration/registrant-details/<int:pk>/', RegistrantDetailRetrieveUpdate.as_view(), name='registrant-detail-retrieve-update'),
+    path('registrations/', views.RegistrationListCreate.as_view(), name='registration-list-create'),
+    path('registrant-details/<uuid:pl>/', RegistrantDetailRetrieveUpdate.as_view(), name='registrant-detail-retrieve-update'),
 ]
