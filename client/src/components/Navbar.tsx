@@ -12,7 +12,7 @@ function Navbar() {
 
   return (
     <>
-      <div>
+      <div className="fixed left-0 top-0 z-50 w-full">
         <div className="md:px-15 flex h-32 w-full justify-between bg-gradient-to-r from-[var(--accent)] to-[var(--primary)] p-10 text-center font-dm-sans text-base font-extrabold uppercase leading-6 tracking-wide text-white sm:justify-center md:justify-between lg:px-20">
           {/* logo */}
           <a
