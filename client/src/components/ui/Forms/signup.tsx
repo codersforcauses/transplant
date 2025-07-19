@@ -9,8 +9,8 @@ import { Input } from "../input";
 import { Separator } from "../separator";
 
 type SignUpFormData = {
-  firstname: string;
-  lastname: string;
+  firstName: string;
+  lastName: string;
   email: string;
   password: string;
   confirmPassword: string;
@@ -21,26 +21,22 @@ const SignUpForm = () => {
     register,
     handleSubmit,
     watch,
-    formState: { errors, isSubmitting },
+    formState: { errors },
   } = useForm<SignUpFormData>();
 
   const password = watch("password");
 
-  const onSubmit = async (data: SignUpFormData) => {
-    try {
-      registerHook({
-        email: data.email,
-        password1: data.password,
-        password2: data.confirmPassword,
-        first_name: data.firstname,
-        last_name: data.lastname,
-      });
-    } catch (error) {
-      console.error("Signup error:", error);
-    }
+  const onSubmit = (data: SignUpFormData) => {
+    registerHook({
+      email: data.email,
+      password1: data.password,
+      password2: data.confirmPassword,
+      first_name: data.firstName,
+      last_name: data.lastName,
+    });
   };
 
-  const { mutate: registerHook, isPending } = useRegister({
+  const { mutate: registerHook } = useRegister({
     onSuccess: () => {
       alert("Sign up was successful.");
     },
@@ -78,8 +74,8 @@ const SignUpForm = () => {
               label="First Name"
               placeholder="Enter First Name"
               containerClassName="flex-1"
-              error={errors.firstname?.message}
-              {...register("firstname", {
+              error={errors.firstName?.message}
+              {...register("firstName", {
                 required: "First name is required",
               })}
             />
@@ -89,8 +85,8 @@ const SignUpForm = () => {
               label="Last Name"
               placeholder="Enter Last Name"
               containerClassName="flex-1"
-              error={errors.lastname?.message}
-              {...register("lastname", {
+              error={errors.lastName?.message}
+              {...register("lastName", {
                 required: "Last name is required",
               })}
             />
@@ -126,6 +122,7 @@ const SignUpForm = () => {
                 },
               })}
             />
+
             <Input
               id="confirmPassword"
               type="password"
@@ -140,14 +137,12 @@ const SignUpForm = () => {
               })}
             />
           </div>
-
           <Button
             className="h-12 w-full text-lg"
             variant="gradient"
             type="submit"
-            disabled={isSubmitting}
           >
-            {isSubmitting ? "Signing Up..." : "Sign Up"}
+            Sign Up
           </Button>
         </form>
         <p className="pt-5 text-sm">
