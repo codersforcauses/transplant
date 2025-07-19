@@ -31,9 +31,16 @@ def register_user(request):
 
 
 class RegistrationListCreate(generics.ListCreateAPIView):
-    queryset = Registration.objects.all()
     serializer_class = RegistrationSerializer
     permission_classes = [permissions.IsAuthenticated]
+
+    def get_queryset(self):
+        """Only return registrations for the current user"""
+        return Registration.objects.filter(user=self.request.user)
+
+    def perform_create(self, serializer):
+        """Automatically set the user to the current user when creating"""
+        serializer.save(user=self.request.user)
 
 
 class RegistrantDetailRetrieveUpdate(generics.RetrieveUpdateAPIView):
