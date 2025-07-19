@@ -15,6 +15,7 @@
     "prepare": "cd .. && husky client/.husky"
   },
   "dependencies": {
+    "@hookform/resolvers": "^5.1.1",
     "@radix-ui/react-slot": "^1.2.3",
     "@tanstack/react-query": "^5.80.7",
     "@tanstack/react-query-devtools": "^5.80.7",
@@ -28,8 +29,10 @@
     "next": "15.3.3",
     "react": "19.1.0",
     "react-dom": "19.1.0",
+    "react-hook-form": "^7.60.0",
     "tailwind-merge": "^3.3.1",
     "tailwindcss-animate": "^1.0.7",
+    "zod": "^4.0.5",
     "zustand": "^5.0.6"
   },
   "devDependencies": {

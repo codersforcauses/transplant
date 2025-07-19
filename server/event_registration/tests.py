@@ -29,7 +29,7 @@ class UserRegistrationTest(TestCase):
             "first_name": first_name,
             "last_name": last_name,
         }
-        response = self.client.post(self.url, data)
+        response = self.client.post(self.url, data, content_type="application/json")
         self.assertEqual(response.status_code, expected_status)
 
     def test_valid_registration(self):
