@@ -1,10 +1,11 @@
 from django.urls import path
-from event_registration import views
-from .views import RegistrantDetailRetrieveUpdate, register_user
 from rest_framework_simplejwt.views import (
     TokenObtainPairView,
     TokenRefreshView,
 )
+from event_registration import views
+from .views import RegistrantDetailRetrieveUpdate, register_user
+
 
 urlpatterns = [
     path("users/register/", register_user, name="register_user"),
