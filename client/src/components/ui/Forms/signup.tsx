@@ -1,7 +1,5 @@
-import { zodResolver } from "@hookform/resolvers/zod";
 import Link from "next/link";
-import { SubmitHandler, useForm } from "react-hook-form";
-import { z } from "zod";
+import { useForm } from "react-hook-form";
 
 import { useRegister } from "@/hooks/useRegister";
 
@@ -10,15 +8,38 @@ import { GoogleIcon } from "../google-icon";
 import { Input } from "../input";
 import { Separator } from "../separator";
 
-type Schema = {
-  first_name: string;
-  last_name: string;
+type SignUpFormData = {
+  firstname: string;
+  lastname: string;
   email: string;
-  password1: string;
-  password2: string;
+  password: string;
+  confirmPassword: string;
 };
 
 const SignUpForm = () => {
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors, isSubmitting },
+  } = useForm<SignUpFormData>();
+
+  const password = watch("password");
+
+  const onSubmit = async (data: SignUpFormData) => {
+    try {
+      registerHook({
+        email: data.email,
+        password1: data.password,
+        password2: data.confirmPassword,
+        first_name: data.firstname,
+        last_name: data.lastname,
+      });
+    } catch (error) {
+      console.error("Signup error:", error);
+    }
+  };
+
   const { mutate: registerHook, isPending } = useRegister({
     onSuccess: () => {
       alert("yippeee!! Sign up was successful.");
@@ -27,26 +48,6 @@ const SignUpForm = () => {
       alert("An error occured. Sign Up was unsuccessful.");
     },
   });
-
-  const {
-    register,
-    handleSubmit,
-    watch,
-    formState: { errors },
-  } = useForm<Schema>();
-  const onSubmit: SubmitHandler<Schema> = (data) => console.log(data);
-
-  // const onSubmit = (values: z.infer<typeof schema>) => {
-
-  //   registerHook({
-  //   first_name: values.first_name,
-  //   last_name: values.last_name,
-  //   email: values.email,
-  //   password1: values.password1,
-  //   password2: values.password2,
-  //   })
-  // }
-
   return (
     <div className="flex min-h-screen flex-col items-center justify-center">
       <div className="mx-4 flex max-w-xs flex-col items-center justify-center py-16 sm:mx-0 sm:max-w-3xl sm:rounded-2xl sm:border sm:border-border sm:px-20">
@@ -72,61 +73,88 @@ const SignUpForm = () => {
         >
           <div className="flex flex-col gap-4 pb-10 md:flex-row md:gap-x-8 md:pb-12">
             <Input
-              {...register("first_name")}
               id="firstname"
               type="text"
-              name="firstname"
               label="First Name"
               placeholder="Enter First Name"
               containerClassName="flex-1"
-              required
-              error={errors.first_name?.message}
+              error={errors.firstname?.message}
+              {...register("firstname", {
+                required: "First name is required",
+                minLength: {
+                  value: 2,
+                  message: "First name must be at least 2 characters",
+                },
+              })}
             />
             <Input
-              {...register("last_name")}
               id="lastname"
               type="text"
-              name="lastname"
               label="Last Name"
               placeholder="Enter Last Name"
               containerClassName="flex-1"
-              required
+              error={errors.lastname?.message}
+              {...register("lastname", {
+                required: "Last name is required",
+                minLength: {
+                  value: 2,
+                  message: "Last name must be at least 2 characters",
+                },
+              })}
             />
           </div>
 
           <div className="pb-4 sm:pb-8">
             <Input
-              {...register("email")}
               id="email"
               type="email"
-              name="email"
               label="Email"
               placeholder="Enter Email"
               className="text-base"
-              required
+              error={errors.email?.message}
+              {...register("email", {
+                required: "Email is required",
+                pattern: {
+                  value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                  message: "Please enter a valid email address",
+                },
+              })}
             />
           </div>
 
           <div className="flex flex-col gap-4 pb-10 md:flex-row md:gap-x-8 md:pb-12">
             <Input
-              {...register("password1")}
               id="password"
-              //type="password"
-              name="password"
+              type="password"
               label="Password"
               placeholder="Enter Password"
               containerClassName="flex-1"
-              required
+              error={errors.password?.message}
+              {...register("password", {
+                required: "Password is required",
+                minLength: {
+                  value: 8,
+                  message: "Password must be at least 8 characters",
+                },
+                pattern: {
+                  value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)/,
+                  message:
+                    "Password must contain at least one uppercase letter, one lowercase letter, and one number",
+                },
+              })}
             />
             <Input
-              {...register("password2")}
               id="confirmPassword"
-              //type="password"
-              name="confirmPassword"
+              type="password"
               label="Confirm Password"
               placeholder="Confirm Password"
               containerClassName="flex-1"
-              required
+              error={errors.confirmPassword?.message}
+              {...register("confirmPassword", {
+                required: "Please confirm your password",
+                validate: (value) =>
+                  value === password || "Passwords do not match",
+              })}
             />
           </div>
 
@@ -134,10 +162,12 @@ const SignUpForm = () => {
             className="h-12 w-full text-lg"
             variant="gradient"
             type="submit"
+            disabled={isSubmitting}
           >
-            Sign Up
+            {isSubmitting ? "Signing Up..." : "Sign Up"}
           </Button>
         </form>
+
         <p className="pt-5 text-sm">
           Already have an account?{" "}
           <Link className="text-primary underline" href="/login">
