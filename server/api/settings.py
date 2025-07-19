@@ -36,9 +36,9 @@ ALLOWED_HOSTS = (
     os.environ.get("API_ALLOWED_HOSTS").split()
     if os.environ.get("API_ALLOWED_HOSTS")
     else []
-) + ["http://localhost:3000"]
+) + [FRONTEND_URL]
 
-CSRF_TRUSTED_ORIGINS = ["http://localhost:3000"]
+CSRF_TRUSTED_ORIGINS = [FRONTEND_URL]
 # Application definition
 
 INSTALLED_APPS = [
