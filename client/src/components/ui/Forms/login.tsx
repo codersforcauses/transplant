@@ -2,6 +2,7 @@ import Link from "next/link";
 
 import { Button } from "../button";
 import { GoogleIcon } from "../google-icon";
+import { Input } from "../input";
 import { Separator } from "../separator";
 
 const LoginForm = () => {
@@ -24,30 +25,25 @@ const LoginForm = () => {
         </div>
 
         <form className="flex w-full flex-col">
-          <div className="flex flex-col gap-2.5 pb-5">
-            <label htmlFor="email" className="font-medium text-primary">
-              Email
-            </label>
-            <input
+          <div className="pb-5">
+            <Input
               id="email"
               type="email"
               name="email"
+              label="Email"
               placeholder="Enter Email"
-              className="bg-input h-12 rounded-md border border-border px-4 py-3 text-base placeholder-border"
+              className="text-base"
               required
             />
           </div>
 
-          <div className="flex flex-1 flex-col gap-2.5 pb-5">
-            <label htmlFor="password" className="font-medium text-primary">
-              Password
-            </label>
-            <input
+          <div className="pb-5">
+            <Input
               id="password"
               type="password"
               name="password"
+              label="Password"
               placeholder="Enter Password"
-              className="bg-input h-12 rounded-md border border-border px-4 py-3 placeholder-border"
               required
             />
           </div>

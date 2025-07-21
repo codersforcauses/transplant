@@ -1,12 +1,40 @@
+from .forms import UserRegistrationForm
+from django.http import HttpResponse
+from rest_framework.decorators import api_view, authentication_classes, permission_classes
+import json
 from rest_framework.views import APIView
+from .models import Registration
 from rest_framework.response import Response
 from rest_framework import status
-from .models import Registration, RegistrantDetail
-from django.shortcuts import get_object_or_404
 from rest_framework.permissions import IsAuthenticated
+
+
+@api_view(["POST"])
+@authentication_classes([])
+@permission_classes([])
+def register_user(request):
+    try:
+        body_unicode = request.body.decode('utf-8')
+        body = json.loads(body_unicode)
+        form = UserRegistrationForm(body)
+        errors = form.errors.as_data()
+    except json.decoder.JSONDecodeError:
+        return HttpResponse(status=400)
+
+    if errors.keys() == set(["email"]) and errors["email"][0].code == "unique":
+        return HttpResponse(status=409)
+
+    if not form.is_valid():
+        return HttpResponse(status=400)
+
+    # Email collisions will cause a 400 error, not a 409
+    form.save()
+    return HttpResponse(status=200)
+
 
 class RegistrationsByUserView(APIView):
     permission_classes = [IsAuthenticated]
+
     def get(self, request):
         user_id = request.query_params.get('user_id')
         if not user_id:
