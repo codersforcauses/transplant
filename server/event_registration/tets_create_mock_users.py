@@ -1,5 +1,6 @@
 from event_registration.models import User, Registration, RegistrantDetail
 
+# MOCK USERS DATA TO CHECK API /api/registrations/
 
 # Create user 1
 test_user1, created1 = User.objects.get_or_create(
